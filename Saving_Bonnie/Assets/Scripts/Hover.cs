@@ -13,12 +13,13 @@ public class Hover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     	FollowMouse();   
+     	FollowMouse();	//Calls FollowMouse method
     }
 
+	//Makes the game follow the mouse on the screen
 	private void FollowMouse(){
-		transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+		transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition); //Takes a screen point and turns it into a point in the game world
+		transform.position = new Vector3(transform.position.x, transform.position.y, 0); //Creates the position of the mouse in the game from the world
 	}
 
 }
