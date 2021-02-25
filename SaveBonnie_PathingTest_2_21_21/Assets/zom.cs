@@ -1,51 +1,58 @@
-﻿using System.Collections;
+﻿/**
+* AUTHOR NAME: Joshua Robinson
+* PROJECT: Save Bonnie (Zombie Tower Defense Game)
+* 
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class zom : MonoBehaviour
 {
-    //Variables
+    // Variables for the zombie behavior and animations, including the waypoint array
     [SerializeField]
     Transform[] waypt;
 
     [SerializeField]
     public float speed = 2f;
 
-    //[SerializeField]
     public SpriteRenderer zomWalk;
 
-    //[SerializeField]
     public Sprite zomWalkDown;
 
-    //[SerializeField]
     public Sprite zomWalkRight;
 
-    //[SerializeField]
     public Sprite zomWalkLeft;
 
     public Animator anim;
 
-    public int count = 0;
+    public int ptCount = 0;
 
 
+    // Start condition, puts the zombie character at the start of the path
     void Start()
     {
-        transform.position = waypt[count].transform.position;
+        transform.position = waypt[ptCount].transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        anim.SetInteger("counter", count);
+        // Ties the count for the waypoints to a counter variable for the animations
+        anim.SetInteger("counter", ptCount);
 
-        transform.position = Vector2.MoveTowards(transform.position, waypt[count].transform.position, speed * Time.deltaTime);
+        // Points the zombie to walk towards the next waypoint
+        transform.position = Vector2.MoveTowards(transform.position, waypt[ptCount].transform.position, speed * Time.deltaTime);
 
-        if (transform.position == waypt[count].transform.position) {
-            count++;
+        // Sets the zombie to point at a new waypoint when it reaches the previous one
+        if (transform.position == waypt[ptCount].transform.position) {
+            ptCount++;
         }
 
-        if (count == waypt.Length) {
-            count = 0;
+        // TESTING PURPOSES; resets the position of the zombie at the end so it continues to go along the path
+        if (ptCount == waypt.Length) {
+            ptCount = 0;
             transform.position = new Vector3(0.97f, 6f, 0f);
         }
     }
