@@ -11,7 +11,9 @@ public class SpawnTowers : MonoBehaviour
 
 	//occurs when mouse is clicked in game
 	private void OnMouseDown(){
-		SpawnTower(GetSquareClicked()); //Calls the spawn tower method with the return value from GetSquareClicked method
+	    if(PauseMenu.GameIsPaused == false){
+		    SpawnTower(GetSquareClicked()); //Calls the spawn tower method with the return value from GetSquareClicked method
+		}
 	}
 	
 	//finds the world position from the screen

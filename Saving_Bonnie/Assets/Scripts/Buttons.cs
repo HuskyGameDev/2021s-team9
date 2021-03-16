@@ -19,5 +19,6 @@ public class Buttons : MonoBehaviour
 	{
 		Debug.Log("Exiting..."); //Prints to debug screen to ensure button was pressed
 		Application.Quit(); //Quits the game but exiting the application
+
 	}
 }
