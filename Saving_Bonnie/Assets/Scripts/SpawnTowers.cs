@@ -12,10 +12,15 @@ public class SpawnTowers : MonoBehaviour
 	//occurs when mouse is clicked in game
 	private void OnMouseDown(){
 	    if(PauseMenu.GameIsPaused == false){
-		    SpawnTower(GetSquareClicked()); //Calls the spawn tower method with the return value from GetSquareClicked method
+	        SpawnTower(GetSquareClicked()); //Calls the spawn tower method with the return value from GetSquareClicked method
 		}
 	}
-	
+
+	//Creates a tower
+    private void SpawnTower(Vector3 worldPos){
+    	GameObject newDefender = Instantiate(defender, worldPos, Quaternion.identity) as GameObject; //places a tower at the world point with the selected prefab in Unity
+    }
+
 	//finds the world position from the screen
 	private Vector3 GetSquareClicked(){
 		Vector2 clickPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y); //Creates a vector based on x and y values
@@ -38,9 +43,5 @@ public class SpawnTowers : MonoBehaviour
 		return new Vector2(newX,newY);
 	}
 
-	//Creates a tower
-	private void SpawnTower(Vector3 worldPos){
-		GameObject newDefender = Instantiate(defender, worldPos, Quaternion.identity) as GameObject; //places a tower at the world point with the selected prefab in Unity
-	}
 	
 }
