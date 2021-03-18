@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+/// <summary>
+/// Used to spawn towers at the desired position
+/// </summary>
 public class SpawnTowers : MonoBehaviour
 {
 	[SerializeField] GameObject defender; //initializes the defender
@@ -37,6 +40,7 @@ public class SpawnTowers : MonoBehaviour
 		
 	}
 	
+	//An attempt to center the tower on the tilemap
 	private Vector2 SnapToGrid(Vector3 rawWorldPos){
 		float newX = Mathf.RoundToInt(rawWorldPos.x);
 		float newY = Mathf.RoundToInt(rawWorldPos.y);

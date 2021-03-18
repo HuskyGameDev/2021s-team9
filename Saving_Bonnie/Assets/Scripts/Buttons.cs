@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// This class keeps track of the interaction of the main menu buttons. It will either start the game or exit the application
+/// </summary>
 public class Buttons : MonoBehaviour
 {
-    public string levelToLoad = "Game";
+	//Keeps track of what level to load
+    public string levelToLoad = "Game_v1";
 
 	//Controls what happens with the play button
 	public void Play()

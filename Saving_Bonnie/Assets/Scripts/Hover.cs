@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class just follows the mouse by putting a sprite on the screen and going where the mouse points
+/// </summary>
 public class Hover : MonoBehaviour
 {
     // Start is called before the first frame update
