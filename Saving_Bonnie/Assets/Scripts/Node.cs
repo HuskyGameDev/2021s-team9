@@ -38,6 +38,10 @@ public class Node : MonoBehaviour
                     Debug.Log("Choose a tower first");
                     return;
                 }
+        if (PauseMenu.GameIsPaused){ //Checks if the game is paused
+            Debug.Log("Game is Paused");
+            return;
+        }
         turret = (GameObject)Instantiate(turretToBuild, transform.position, transform.rotation); //Builds a tower on the tile
         buildManager.setTowerToBuild(null); //Resets the current tower to null
     }
