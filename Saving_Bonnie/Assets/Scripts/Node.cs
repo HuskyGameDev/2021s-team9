@@ -8,14 +8,16 @@ public class Node : MonoBehaviour
     public Color hoverColor;
 
     private GameObject turret;
-
     private Renderer rend;
     private Color startColor;
+
+    BuildManager buildManager;
 
     void Start(){
         rend = GetComponent<Renderer>();
         startColor = rend.material.color;
         rend.material.color = hoverColor;
+        buildManager = BuildManager.instance;
     }
 
     void OnMouseDown(){
@@ -23,10 +25,13 @@ public class Node : MonoBehaviour
             Debug.Log("Can't build there!");
             return;
         }
-
         GameObject turretToBuild = BuildManager.instance.GetTurretToBuild();
+        if(turretToBuild == null){
+                    Debug.Log("Choose a tower first");
+                    return;
+                }
         turret = (GameObject)Instantiate(turretToBuild, transform.position, transform.rotation);
-
+        buildManager.setTurretToBuild(null);
     }
 
     void OnMouseEnter(){
