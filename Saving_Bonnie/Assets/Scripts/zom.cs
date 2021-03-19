@@ -1,5 +1,5 @@
 ﻿/**
-* AUTHOR NAME: Joshua Robinson
+* AUTHOR NAMES: Joshua Robinson and Eric Goulet
 * PROJECT: Save Bonnie (Zombie Tower Defense Game)
 * 
 */
@@ -10,6 +10,11 @@ using UnityEngine;
 
 public class zom : MonoBehaviour
 {
+    //variables for health system
+    public int maxHealth = 100;
+    public int currentHealth;
+
+    public HealthBar healthBar;
     // Variables for the zombie behavior and animations, including the waypoint array
     [SerializeField]
     Transform[] waypt;
@@ -30,15 +35,23 @@ public class zom : MonoBehaviour
     public int ptCount = 0;
 
 
-    // Start condition, puts the zombie character at the start of the path
+    // Start condition, puts the zombie character at the start of the path and sets health
     void Start()
     {
+        currentHealth = maxHealth;
+        healthBar.setMaxHealth(maxHealth);
         transform.position = waypt[ptCount].transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //TESTING PURPOSES  takes away 20 health when space is pressed
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TakeDamage(20);
+        }
+
         // Ties the count for the waypoints to a counter variable for the animations
         anim.SetInteger("counter", ptCount);
 
@@ -55,5 +68,12 @@ public class zom : MonoBehaviour
             ptCount = 0;
             transform.position = new Vector3(0.97f, 6f, 0f);
         }
+    }
+
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        healthBar.setHealth(currentHealth);
     }
 }
