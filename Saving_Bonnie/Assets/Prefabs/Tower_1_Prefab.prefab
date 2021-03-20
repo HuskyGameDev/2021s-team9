@@ -94,3 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2af5bce04ea87774c97cc4efae7c6e47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  range: 5
+  cooldown: 3
+  firerate: 1
+  zomClass: {fileID: 0}
