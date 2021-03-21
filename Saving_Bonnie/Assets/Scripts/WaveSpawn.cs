@@ -37,9 +37,9 @@ public class WaveSpawn : MonoBehaviour
     void Update()
     {
         if (countdown <= 0) {
-            for (int i = 0; i < enemyCount; i++) {
+            for (int i = 0; i < waveCount; i++) {
                 Instantiate(zombieEnemy, spawn.position, spawn.rotation);
-                new WaitForSeconds(1f);
+                yield return new WaitForSeconds(1f);
             }
             countdown = waveTimes;
         }

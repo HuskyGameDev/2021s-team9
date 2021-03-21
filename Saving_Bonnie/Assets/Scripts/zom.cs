@@ -17,7 +17,7 @@ public class zom : MonoBehaviour
     public HealthBar healthBar;
     // Variables for the zombie behavior and animations, including the waypoint array
     [SerializeField]
-    Transform[] waypt;
+    Transform[] waypt = {Waypoint_1, Waypoint_2, Waypoint_3, Waypoint_4, Waypoint_5, Waypoint_6};
 
     [SerializeField]
     public float speed = 2f;
@@ -65,8 +65,7 @@ public class zom : MonoBehaviour
 
         // TESTING PURPOSES; resets the position of the zombie at the end so it continues to go along the path
         if (ptCount == waypt.Length) {
-            ptCount = 0;
-            transform.position = new Vector3(0.97f, 6f, 0f);
+            enabled = false;
         }
     }
 
