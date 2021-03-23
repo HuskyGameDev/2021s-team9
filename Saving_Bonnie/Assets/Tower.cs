@@ -10,8 +10,6 @@ public class Tower : MonoBehaviour
     public float firerate = 1f;
     private float fireCountdown = 0f;
 
-    public zom zomClass;
-
     private string enemyTag = "zombie";
 
     //Causes updateTarget to be called once every .5 seconds
@@ -53,8 +51,9 @@ public class Tower : MonoBehaviour
         }
     }
 
+
     void Shoot() {
-        Debug.Log("Shoot");
+        target.GetComponent<zom>().TakeDamage(20);
     }
     
 }

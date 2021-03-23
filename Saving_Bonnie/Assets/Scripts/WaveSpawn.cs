@@ -22,9 +22,9 @@ public class WaveSpawn : MonoBehaviour
 
     private int enemyCount = 1;
 
-    private int countdown = 2;
+    private float countdown = 2f;
 
-    private int waveTimes = 5; 
+    private float waveTimes = 5; 
 
     // Start is called before the first frame update
     void Start() 
@@ -34,20 +34,17 @@ public class WaveSpawn : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update(){
         if (countdown <= 0) {
             for (int i = 0; i < waveCount; i++) {
                 Instantiate(zombieEnemy, spawn.position, spawn.rotation);
                 yield return new WaitForSeconds(1f);
             }
             countdown = waveTimes;
+        } else {
+            countdown -= (float)Time.deltaTime;
+            waveCount++;
         }
-
-        countdown -= (int) Time.deltaTime;
-        waveCount++;
-        enemyCount++;
-
         if (waveCount > 15) {
             return;
         }
