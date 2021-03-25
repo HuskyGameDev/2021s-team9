@@ -37,18 +37,20 @@ public class WaveSpawn : MonoBehaviour
 
         timer -= Time.deltaTime;
 
+        // Game End Condition
         if (waveCount > 10) {
             Debug.Log("END!");
             enabled = false;
         }
     }
 
+    // Handles the new wave spawns and creates enemies
     IEnumerator NewWave() {
-        Debug.Log("WAVE!");
         for (int i = 0; i < enemyCount; i++) {
             Instantiate(zombieEnemy, spawn.position, spawn.rotation);
             yield return new WaitForSeconds((float) (2f / enemyCount));
         }
+        // Increment enemy and wave count
         waveCount++;
         enemyCount++;
     }

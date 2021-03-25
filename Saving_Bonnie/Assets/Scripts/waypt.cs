@@ -12,8 +12,10 @@ using UnityEngine;
 
 public class waypt : MonoBehaviour
 {
+    // Array to hold the waypoints
     public static Transform[] pts;
 
+    // Fills the array with the waypoints on the map
     void Start() {
         pts = new Transform[transform.childCount];
         for (int i = 0; i < pts.Length; i++) {
