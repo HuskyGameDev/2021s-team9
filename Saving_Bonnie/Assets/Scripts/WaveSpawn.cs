@@ -1,16 +1,16 @@
 ﻿/**
 * AUTHOR NAME: Joshua Robinson
 * PROJECT: Save Bonnie (Zombie Tower Defense Game)
-* LAST DATE MODIFIED: March 18, 2021
-* FILE: WaveSpawn.cs
-* DESCRIPTION: 
+* LAST DATE MODIFIED: March 25, 2021
+* FILE: waveSpawn.cs
+* DESCRIPTION: Creates a wave spawner which manages how many zombies and how many waves are created for each round of the game.
 */
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveSpawn : MonoBehaviour
+public class waveSpawn : MonoBehaviour
 {
     [SerializeField]
     public Transform zombieEnemy;
@@ -18,38 +18,37 @@ public class WaveSpawn : MonoBehaviour
     [SerializeField]
     public Transform spawn;
 
-    private int waveCount = 1;
+    private double waveCount = 1f;
 
-    private int enemyCount = 1;
+    private double enemyCount = 1f;
 
-    private int countdown = 2;
+    private double timer = 2f;
 
-    private int waveTimes = 5; 
-
-    // Start is called before the first frame update
-    void Start() 
-    {
-        
-
-    }
+    private double waveTimes = 3f; 
 
     // Update is called once per frame
     void Update()
     {
-        if (countdown <= 0) {
-            for (int i = 0; i < waveCount; i++) {
-                Instantiate(zombieEnemy, spawn.position, spawn.rotation);
-                yield return new WaitForSeconds(1f);
-            }
-            countdown = waveTimes;
+        if (timer <= 0) {
+            StartCoroutine(NewWave());
+            timer = waveTimes;
         }
 
-        countdown -= (int) Time.deltaTime;
+        timer -= Time.deltaTime;
+
+        if (waveCount > 10) {
+            Debug.Log("END!");
+            enabled = false;
+        }
+    }
+
+    IEnumerator NewWave() {
+        Debug.Log("WAVE!");
+        for (int i = 0; i < enemyCount; i++) {
+            Instantiate(zombieEnemy, spawn.position, spawn.rotation);
+            yield return new WaitForSeconds((float) (2f / enemyCount));
+        }
         waveCount++;
         enemyCount++;
-
-        if (waveCount > 15) {
-            return;
-        }
     }
 }
