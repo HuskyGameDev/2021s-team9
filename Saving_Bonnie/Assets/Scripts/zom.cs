@@ -72,6 +72,7 @@ public class zom : MonoBehaviour
         // TESTING PURPOSES; resets the position of the zombie at the end so it continues to go along the path
         if (ptCount == points.Length) {
             Destroy(gameObject); 
+	    Dollars.lives--;
         }
     }
 
