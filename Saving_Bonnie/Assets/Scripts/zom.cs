@@ -76,7 +76,7 @@ public class zom : MonoBehaviour
     }
 
     // Damage System for zombies
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         currentHealth -= damage;
 
