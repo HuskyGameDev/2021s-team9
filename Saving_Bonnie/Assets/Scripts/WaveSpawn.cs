@@ -12,6 +12,7 @@ using UnityEngine;
 
 public class waveSpawn : MonoBehaviour
 {
+    // Variables to handle the zombie enemies and values for creating the waves
     [SerializeField]
     public Transform zombieEnemy;
 

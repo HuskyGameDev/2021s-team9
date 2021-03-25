@@ -1,5 +1,5 @@
 ﻿/**
-* AUTHOR NAMES: Joshua Robinson and Eric Goulet
+* AUTHOR NAME: Joshua Robinson
 * PROJECT: Save Bonnie (Zombie Tower Defense Game)
 * LAST DATE MODIFIED: March 25, 2021
 * FILE: zom.cs
@@ -18,7 +18,6 @@ public class zom : MonoBehaviour
     public HealthBar healthBar;
 
     // Variables for the zombie behavior and animations, including the waypoint array
-
     private Transform[] points;
 
     private float speed = 2f;
@@ -35,7 +34,7 @@ public class zom : MonoBehaviour
 
     private int ptCount = 0;
 
-    // Start condition, puts the zombie character at the start of the path and sets health
+    // Start condition, puts the zombie character at the start of the path
     void Start()
     {
         points = new Transform[waypt.pts.Length];
@@ -76,7 +75,7 @@ public class zom : MonoBehaviour
         }
     }
 
-    
+    // Damage System for zombies
     void TakeDamage(int damage)
     {
         currentHealth -= damage;

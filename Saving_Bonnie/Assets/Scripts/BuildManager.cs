@@ -11,13 +11,13 @@ public class BuildManager : MonoBehaviour
     public static BuildManager instance;
 
     //Stores all the tower prefabs
-    public GameObject tower1;
-    public GameObject tower2;
-    public GameObject tower3;
-    public GameObject tower4;
+    public GameObject tower1, tower2, tower3, tower4;
 
     //Keeps track of  which tower will be built on the next click of the mouse
-    private GameObject towerToBuild;
+    private TowerBlueprint towerToBuild;
+
+    //property for building
+    public bool canBuild { get { return towerToBuild != null; } }
 
     /// <summary>
     /// Ensures that on the beginning of the game that only one instace of this BuildManager exists
@@ -37,20 +37,17 @@ public class BuildManager : MonoBehaviour
         towerToBuild = null;
     }
 
-    /// <summary>
-    /// Returns what tower is to be built or null if none are selected
-    /// </summary>
-    /// <returns></returns>
-    public GameObject GetTowerToBuild(){
-        return towerToBuild;
+    public void selectTower (TowerBlueprint tower){
+	towerToBuild = tower;
     }
 
-    /// <summary>
-    /// Sets the current tower variable to the tower the user clicked on in the UI
-    /// </summary>
-    /// <param name="tower"> The tower they wish to build next </param>
-    public void setTowerToBuild(GameObject tower){
-        towerToBuild = tower;
+    public void buildTowerOn (Node node){
+         if (Dollars.money < towerToBuild.cost){
+		Debug.Log("Not enough money");
+                return;
+         }
+         Dollars.money -= towerToBuild.cost;
+	 ///GameObject tower = (GameObject) Instantiate(towerToBuild, node.transform.position, node.transform.rotation);
+	 ///node.tower = tower;
     }
-
 }

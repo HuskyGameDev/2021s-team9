@@ -98,4 +98,6 @@ MonoBehaviour:
   range: 5
   cooldown: 3
   firerate: 1
+  otherGameObject: {fileID: 3645443207062812217, guid: 850fb6ac3e8c29e4bb7ec48b80418885,
+    type: 3}
   zomClass: {fileID: 0}
