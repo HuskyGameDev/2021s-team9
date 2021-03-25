@@ -7,6 +7,12 @@ using UnityEngine;
 /// </summary>
 public class ChoosingTowers : MonoBehaviour
 {
+
+    public TowerBlueprint tower1;
+    public TowerBlueprint tower2;
+    public TowerBlueprint tower3;
+    public TowerBlueprint tower4;
+
     //Creates an instance of the buildmanager to be able to change the current tower
     BuildManager buildManager;
     void Start(){
@@ -15,19 +21,19 @@ public class ChoosingTowers : MonoBehaviour
 
     //Changes the current tower to tower1
     public void chooseTower1(){
-        buildManager.setTowerToBuild(buildManager.tower1);
+        buildManager.selectTower(tower1);
     }
     //Changes the current tower to tower 2
     public void chooseTower2(){
-        buildManager.setTowerToBuild(buildManager.tower2);
+        buildManager.selectTower(tower2);
     }
     //Changes the current tower to tower 3
     public void chooseTower3(){
-        buildManager.setTowerToBuild(buildManager.tower3);
+        buildManager.selectTower(tower3);
     }
     //Changes the current tower to tower 4
     public void chooseTower4(){
-            buildManager.setTowerToBuild(buildManager.tower4);
-        }
+        buildManager.selectTower(tower4);
+    }
 
 }

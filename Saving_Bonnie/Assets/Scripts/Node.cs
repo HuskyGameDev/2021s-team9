@@ -9,14 +9,21 @@ public class Node : MonoBehaviour
 {
     //Stores the color of the what we want the tiles to be when hovered over
     public Color hoverColor;
+    public Vector3 positionOffset;
+
+    [Header("Optional")]
     //Stores the turret on top of the tile
-    private GameObject turret;
+    public GameObject tower;
+
     //used to render the color
     private Renderer rend;
+
     //Used to put the color back to its original color
     private Color startColor;
+
     //used to build the tower on the node
     BuildManager buildManager;
+
     //Gets the starting color, as well as instaniate all other variables
     void Start(){
         rend = GetComponent<Renderer>();
@@ -29,27 +36,33 @@ public class Node : MonoBehaviour
     /// On the click of the mouse the turret will be placed if able
     /// </summary>
     void OnMouseDown(){
-        if(turret != null){ //Checks if a tower is already in that tile
+
+        if(!buildManager.canBuild){
+            return;
+        }
+
+        if(tower != null){ //Checks if a tower is already in that tile
             Debug.Log("Can't build there!");
             return;
         }
-        GameObject turretToBuild = BuildManager.instance.GetTowerToBuild();
-        if(turretToBuild == null){ //Checks if a tower has been choosen yet
-                    Debug.Log("Choose a tower first");
-                    return;
-                }
+
         if (PauseMenu.GameIsPaused){ //Checks if the game is paused
             Debug.Log("Game is Paused");
             return;
         }
-        turret = (GameObject)Instantiate(turretToBuild, transform.position, transform.rotation); //Builds a tower on the tile
-        buildManager.setTowerToBuild(null); //Resets the current tower to null
+
+	buildManager.buildTowerOn(this);
+        buildManager.selectTower(null); //Resets the current tower to null
     }
 
     /// <summary>
     /// Used to change the color of the tile when the mouse is over it
     /// </summary>
     void OnMouseEnter(){
+        if (!buildManager.canBuild){
+            return;
+        }
+
         rend.material.color = startColor;
     }
 
