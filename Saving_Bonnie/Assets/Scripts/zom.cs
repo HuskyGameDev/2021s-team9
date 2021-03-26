@@ -87,7 +87,6 @@ public class zom : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-
         healthBar.setHealth(currentHealth);
     }
     

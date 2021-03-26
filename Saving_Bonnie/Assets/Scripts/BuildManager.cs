@@ -11,7 +11,7 @@ public class BuildManager : MonoBehaviour
     public static BuildManager instance;
 
     //Stores all the tower prefabs
-    public GameObject tower1, tower2, tower3, tower4;
+    public GameObject tower1, tower2, tower3, tower4; //not needed anymore?
 
     //Keeps track of  which tower will be built on the next click of the mouse
     private TowerBlueprint towerToBuild;
@@ -38,16 +38,16 @@ public class BuildManager : MonoBehaviour
     }
 
     public void selectTower (TowerBlueprint tower){
-	towerToBuild = tower;
+	    towerToBuild = tower;
     }
 
     public void buildTowerOn (Node node){
-         if (Dollars.money < towerToBuild.cost){
-		Debug.Log("Not enough money");
-                return;
-         }
-         Dollars.money -= towerToBuild.cost;
-	 ///GameObject tower = (GameObject) Instantiate(towerToBuild, node.transform.position, node.transform.rotation);
-	 ///node.tower = tower;
+        if (Dollars.money < towerToBuild.cost){
+            Debug.Log("Not enough money");
+            return;
+        }
+        Dollars.money -= towerToBuild.cost;
+        GameObject tower = (GameObject)Instantiate(towerToBuild.prefab, node.transform.position, node.transform.rotation);
+        node.tower = tower;
     }
 }

@@ -3,6 +3,8 @@
 public class shop : MonoBehaviour
 {
 
+	//Not needed anymore?
+
 	public TowerBlueprint tower1, tower2, tower3, tower4;
 
 	BuildManager buildManager;

@@ -51,7 +51,7 @@ public class Node : MonoBehaviour
             return;
         }
 
-	buildManager.buildTowerOn(this);
+	    buildManager.buildTowerOn(this);
         buildManager.selectTower(null); //Resets the current tower to null
     }
 
