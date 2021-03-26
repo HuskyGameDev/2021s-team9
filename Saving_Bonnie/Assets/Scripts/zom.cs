@@ -58,6 +58,7 @@ public class zom : MonoBehaviour
            TakeDamage(20);
         }
 
+
         // Ties the count for the waypoints to a counter variable for the animations
         anim.SetInteger("counter", ptCount);
 
@@ -69,10 +70,16 @@ public class zom : MonoBehaviour
             ptCount++;
         }
 
-        // TESTING PURPOSES; resets the position of the zombie at the end so it continues to go along the path
+        // TESTING PURPOSES kills the zombie at the end
         if (ptCount == points.Length) {
             Destroy(gameObject); 
-	    Dollars.lives--;
+	        Dollars.lives--;
+        }
+
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+            Dollars.money += 5;
         }
     }
 
