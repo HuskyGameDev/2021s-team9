@@ -19,9 +19,11 @@ public class WaveSpawn : MonoBehaviour
     [SerializeField]
     public Transform spawn;
 
+    public int zomCount = 0;
+
     private double waveCount = 1f;
 
-    private double enemyCount = 1f;
+    private double spawnCount = 1f;
 
     private double timer = 2f;
 
@@ -35,23 +37,26 @@ public class WaveSpawn : MonoBehaviour
             timer = waveTimes;
         }
 
-        timer -= Time.deltaTime;
+        if (zomCount == 0 && timer > 0) {
+            timer -= Time.deltaTime;
+        }
 
-        // Game End Condition
-        if (waveCount > 10) {
-            Debug.Log("END!");
+        // Game Win Condition
+        if (waveCount > 10 && zomCount == 0) {
+            Debug.Log("You win!");
             enabled = false;
         }
     }
 
     // Handles the new wave spawns and creates enemies
     IEnumerator NewWave() {
-        for (int i = 0; i < enemyCount; i++) {
+        for (int i = 0; i < spawnCount; i++) {
             Instantiate(zombieEnemy, spawn.position, spawn.rotation);
-            yield return new WaitForSeconds((float) (2f / enemyCount));
+            zomCount++;
+            yield return new WaitForSeconds((float) (2f / spawnCount));
         }
         // Increment enemy and wave count
         waveCount++;
-        enemyCount++;
+        spawnCount++;
     }
 }
