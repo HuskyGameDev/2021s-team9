@@ -19,6 +19,8 @@ public class BuildManager : MonoBehaviour
     //property for building
     public bool canBuild { get { return towerToBuild != null; } }
 
+    private GameObject[] nodes;
+
     /// <summary>
     /// Ensures that on the beginning of the game that only one instace of this BuildManager exists
     /// </summary>
@@ -35,12 +37,18 @@ public class BuildManager : MonoBehaviour
     /// </summary>
     void Start(){
         towerToBuild = null;
+        nodes = GameObject.FindGameObjectsWithTag("nodes");
     }
 
+    //Changes the current tower selection to the new one
     public void selectTower (TowerBlueprint tower){
 	    towerToBuild = tower;
     }
 
+    /// <summary>
+    /// Builds the tower on the desired node
+    /// </summary>
+    /// <param name="node"></param>
     public void buildTowerOn (Node node){
         if (Dollars.money < towerToBuild.cost){
             Debug.Log("Not enough money");
@@ -49,6 +57,16 @@ public class BuildManager : MonoBehaviour
         Dollars.money -= towerToBuild.cost;
         GameObject tower = (GameObject)Instantiate(towerToBuild.prefab, node.transform.position, node.transform.rotation);
         node.tower = tower;
-        FindObjectOfType<AudioManager>().play("TowerPlace");
+        FindObjectOfType<AudioManager>().play("TowerPlace");        
+        hideTiles(); 
+    }
+
+    /// <summary>
+    /// Makes all the tiles vanish
+    /// </summary>
+    private void hideTiles() {
+        for (int i = 0; i < nodes.Length; i++) {
+            nodes[i].GetComponent<Node>().TowersDisappear();
+        }
     }
 }
