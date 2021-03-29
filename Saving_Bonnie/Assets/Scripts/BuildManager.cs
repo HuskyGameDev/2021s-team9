@@ -49,5 +49,6 @@ public class BuildManager : MonoBehaviour
         Dollars.money -= towerToBuild.cost;
         GameObject tower = (GameObject)Instantiate(towerToBuild.prefab, node.transform.position, node.transform.rotation);
         node.tower = tower;
+        FindObjectOfType<AudioManager>().play("TowerPlace");
     }
 }
