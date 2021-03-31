@@ -15,6 +15,9 @@ public class Node : MonoBehaviour
     //Stores the turret on top of the tile
     public GameObject tower;
 
+    //Stores the cost of the provided tower, used when selling the tower
+    public int cost;
+
     //used to render the color
     private Renderer rend;
 
@@ -38,7 +41,17 @@ public class Node : MonoBehaviour
     /// </summary>
     void OnMouseDown(){
 
-        if(!buildManager.canBuild){
+        if (buildManager.sell && tower == null) {
+            Debug.Log("No Tower to be Sold Here");
+            return;
+        }
+
+        if (buildManager.sell) {
+            buildManager.sellTowerOn(this);
+            buildManager.sell = false;
+        }
+
+        if (!buildManager.canBuild){
             return;
         }
 

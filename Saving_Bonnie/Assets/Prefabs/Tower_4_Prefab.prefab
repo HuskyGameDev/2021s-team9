@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -6891242187927140528}
   m_Layer: 0
   m_Name: Tower_4_Prefab
-  m_TagString: Untagged
+  m_TagString: Buffable_Towers
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,3 +98,5 @@ MonoBehaviour:
   range: 5
   cooldown: 3
   firerate: 1
+  passiveTimer: 5
+  damage: 0

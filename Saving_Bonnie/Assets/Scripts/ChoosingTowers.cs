@@ -28,21 +28,34 @@ public class ChoosingTowers : MonoBehaviour
     //Changes the current tower to tower1
     public void chooseTower1(){
         buildManager.selectTower(tower1);
+        buildManager.sell = false;
         seeTiles();
     }
     //Changes the current tower to tower 2
     public void chooseTower2(){
         buildManager.selectTower(tower2);
+        buildManager.sell = false;
         seeTiles();
     }
     //Changes the current tower to tower 3
     public void chooseTower3(){
         buildManager.selectTower(tower3);
+        buildManager.sell = false;
         seeTiles();
     }
     //Changes the current tower to tower 4
     public void chooseTower4(){
         buildManager.selectTower(tower4);
+        buildManager.sell = false;
+        seeTiles();
+    }
+
+   /// <summary>
+   /// Selects the tower to be null and then sells the tower
+   /// </summary>
+    public void sellTower() {
+        buildManager.selectTower(null); //Sets the tower to be built to null in case previous tower is chosen
+        buildManager.sell = true; //Tells the buildmanager the tower will be sold
         seeTiles();
     }
 

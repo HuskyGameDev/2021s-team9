@@ -6,6 +6,7 @@ TagManager:
   tags:
   - zombie
   - nodes
+  - Buffable_Towers
   layers:
   - Default
   - TransparentFX
