@@ -29106,6 +29106,36 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: BeTenacious
+    clip: {fileID: 8300000, guid: 60750f760d9fb534a84bcfe2c3f62fd5, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BeepBoop
+    clip: {fileID: 8300000, guid: 09b87ad6f0c9f3444a1a77b894d438f4, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ChaChing
+    clip: {fileID: 8300000, guid: 0feb0dd8115cd9c42b4c4401c85c0732, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Crossbow
+    clip: {fileID: 8300000, guid: 2a7e191255c90974bac658e1de20c982, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ElectricShock
+    clip: {fileID: 8300000, guid: a8e7d7a9a93692448ba36c9351483a2f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!4 &1052134694
 Transform:
   m_ObjectHideFlags: 0
