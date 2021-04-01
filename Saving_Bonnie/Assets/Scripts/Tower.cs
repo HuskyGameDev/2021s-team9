@@ -110,6 +110,23 @@ public class Tower : MonoBehaviour
     /// </summary>
     void Shoot() {
         target.GetComponent<zom>().TakeDamage(damage);
+        if (name.Contains("Tower_2_Prefab") && target.GetComponent<zom>().speed == 1) { //Checks if the tower is the EE tower and if the zombie hasn't been slowed down yet
+            float oldSpeed = target.GetComponent<zom>().speed; //Gets the zombies original speed
+            StartCoroutine(Slowdown(oldSpeed)); //Calls the slowdown method which will wait 2 seconds before putting the zombie back to its default speed
+        }
+    }
+
+    /// <summary>
+    /// Has the system slow the zombie down for 2 seconds
+    /// </summary>
+    /// <param name="oldSpeed"></param> The default speed of the zombie
+    /// <returns></returns>
+    IEnumerator Slowdown(float oldSpeed) {
+        target.GetComponent<zom>().speed = (float)(oldSpeed * .7); //Reduces the zombies speed
+        yield return new WaitForSecondsRealtime(2); //Causes the system to wait 2 seconds before going to the next line
+        if (target != null) { //Checks if the target died during the wait
+            target.GetComponent<zom>().speed = oldSpeed; //Resets the zombies speed
+        }
     }
     
 }

@@ -20,7 +20,7 @@ public class zom : MonoBehaviour
     // Variables for the zombie behavior and animations, including the waypoint array
     private Transform[] points;
 
-    private float speed = 1f;
+    public float speed = 1f;
 
     public SpriteRenderer zomWalk;
 
