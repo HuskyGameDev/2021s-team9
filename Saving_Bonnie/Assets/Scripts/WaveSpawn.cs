@@ -35,9 +35,10 @@ public class WaveSpawn : MonoBehaviour
         if (timer <= 0) {
             StartCoroutine(NewWave());
             timer = waveTimes;
-	    if (waveCount != 1){
-	    	Dollars.money = Dollars.money + 25 * (int)waveCount;
-	    }
+        }
+
+        if (zomCount == 0 && timer > 0) {
+            timer -= Time.deltaTime;
         }
 
         // Game Win Condition
