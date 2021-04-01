@@ -88,6 +88,11 @@ public class BuildManager : MonoBehaviour {
     /// <param name="node"></param> The node the user clicked on
     public void sellTowerOn(Node node) {
 
+        if (PauseMenu.GameIsPaused) {
+            Debug.Log("Game is Paused");
+            return;
+        }
+
         if (node.tower.name.Contains("Tower_1_Prefab")) {
             //TODO make it so towers have buff removed upon selling CS tower
         }
