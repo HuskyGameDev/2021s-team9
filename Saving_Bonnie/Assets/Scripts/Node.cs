@@ -8,27 +8,31 @@ using UnityEngine;
 public class Node : MonoBehaviour
 {
     //Stores the color of the what we want the tiles to be when hovered over
-    public Color hoverColor;
+    public Color hidden;
     public Vector3 positionOffset;
 
-    [Header("Optional")]
+    [Header("Leave Empty in Unity")]
     //Stores the turret on top of the tile
     public GameObject tower;
+
+    //Stores the cost of the provided tower, used when selling the tower
+    public int cost;
 
     //used to render the color
     private Renderer rend;
 
     //Used to put the color back to its original color
-    private Color startColor;
+    private Color visible;
 
     //used to build the tower on the node
     BuildManager buildManager;
 
+
     //Gets the starting color, as well as instaniate all other variables
     void Start(){
         rend = GetComponent<Renderer>();
-        startColor = rend.material.color;
-        rend.material.color = hoverColor;
+        visible = rend.material.color;
+        rend.material.color = hidden;
         buildManager = BuildManager.instance;
     }
     
@@ -37,7 +41,17 @@ public class Node : MonoBehaviour
     /// </summary>
     void OnMouseDown(){
 
-        if(!buildManager.canBuild){
+        if (buildManager.sell && tower == null) {
+            Debug.Log("No Tower to be Sold Here");
+            return;
+        }
+
+        if (buildManager.sell) {
+            buildManager.sellTowerOn(this);
+            buildManager.sell = false;
+        }
+
+        if (!buildManager.canBuild){
             return;
         }
 
@@ -51,25 +65,23 @@ public class Node : MonoBehaviour
             return;
         }
 
-	    buildManager.buildTowerOn(this);
+	    buildManager.buildTowerOn(this); //Builds a tower
         buildManager.selectTower(null); //Resets the current tower to null
     }
 
     /// <summary>
-    /// Used to change the color of the tile when the mouse is over it
+    /// Makes the tile visible
     /// </summary>
-    void OnMouseEnter(){
-        if (!buildManager.canBuild){
-            return;
+    public void TowersAppear() {
+        if (tower == null) { //Checks if a tower is already placed
+            rend.material.color = visible;
         }
-
-        rend.material.color = startColor;
     }
 
     /// <summary>
-    /// Used to reset the color of the tile when the mouse moves off it
+    /// Hides the tile
     /// </summary>
-    void OnMouseExit(){
-        rend.material.color = hoverColor;
+    public void TowersDisappear() {
+        rend.material.color = hidden;
     }
 }

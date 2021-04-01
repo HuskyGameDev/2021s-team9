@@ -98,3 +98,5 @@ MonoBehaviour:
   range: 5
   cooldown: 3
   firerate: 1
+  passiveTimer: 1
+  damage: 0

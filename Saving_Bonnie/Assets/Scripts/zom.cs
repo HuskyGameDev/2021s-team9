@@ -20,7 +20,7 @@ public class zom : MonoBehaviour
     // Variables for the zombie behavior and animations, including the waypoint array
     private Transform[] points;
 
-    private float speed = 2f;
+    private float speed = 1f;
 
     public SpriteRenderer zomWalk;
 
@@ -52,12 +52,6 @@ public class zom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // TESTING PURPOSES  takes away 20 health when space is pressed
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-           TakeDamage(20);
-        }
-
 
         // Ties the count for the waypoints to a counter variable for the animations
         anim.SetInteger("counter", ptCount);
