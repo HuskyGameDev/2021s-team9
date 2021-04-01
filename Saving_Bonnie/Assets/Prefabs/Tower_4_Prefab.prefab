@@ -99,4 +99,7 @@ MonoBehaviour:
   cooldown: 0
   firerate: 0
   damage: 0
+  slowdownTime: 0
+  slowdownAmount: 0
   passiveTimer: 5
+  income: 10

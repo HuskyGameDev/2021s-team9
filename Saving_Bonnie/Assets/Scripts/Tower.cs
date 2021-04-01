@@ -12,17 +12,21 @@ public class Tower : MonoBehaviour
     public Transform target; //Target mob that will be shot
 
     [Header("For CS, EE, and ME Towers")]
-    public float range = 5; //Range of towers
+    public float range; //Range of towers
 
     [Header("For EE and ME Towers")]
-    public float cooldown = 3f; //Unknown if used
-    public float firerate = 1f; //Used to calculte cooldown between shots
+    public float cooldown; //Unknown if used
+    public float firerate; //Used to calculte cooldown between shots
     public int damage; //Amount of damage tower does
-    private float fireCountdown = 0f; //Counts down how long until the next time the tower can shoot
+    private float fireCountdown; //Counts down how long until the next time the tower can shoot
     private int baseDamage; //Used to know if the tower has been buffed
 
+    [Header("For EE Towers")]
+    public int slowdownTime;
+    public float slowdownAmount;
+
     [Header("For Business Towers")]
-    public float passiveTimer = 5f; //How often the passive abilities can happen
+    public float passiveTimer; //How often the passive abilities can happen
     public int income;
     private int baseIncome;
 
@@ -105,7 +109,7 @@ public class Tower : MonoBehaviour
     /// </summary>
     void passiveAbilities() {
         if (this.name.Contains("Tower_4_Prefab")) {
-            Dollars.money += income; //Increases money by $10 
+            Dollars.money += income; //Increases money by income 
         }
     }
 
@@ -187,8 +191,8 @@ public class Tower : MonoBehaviour
     /// <param name="oldSpeed"></param> The default speed of the zombie
     /// <returns></returns>
     IEnumerator Slowdown(float oldSpeed) {
-        target.GetComponent<zom>().speed = (float)(oldSpeed * .7); //Reduces the zombies speed
-        yield return new WaitForSecondsRealtime(2); //Causes the system to wait 2 seconds before going to the next line
+        target.GetComponent<zom>().speed = oldSpeed * slowdownAmount; //Reduces the zombies speed
+        yield return new WaitForSecondsRealtime(slowdownTime); //Causes the system to wait 2 seconds before going to the next line
         if (target != null) { //Checks if the target died during the wait
             target.GetComponent<zom>().speed = oldSpeed; //Resets the zombies speed
         }

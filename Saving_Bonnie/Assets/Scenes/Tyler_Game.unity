@@ -375,7 +375,6 @@ MonoBehaviour:
   zombieEnemy: {fileID: 260921285333088682, guid: fd8c6a9bd2c5c0e459cf6dae685495e7,
     type: 3}
   spawn: {fileID: 1973681805}
-  zomCount: 0
 --- !u!4 &36237750
 Transform:
   m_ObjectHideFlags: 0
