@@ -110,6 +110,7 @@ public class Tower : MonoBehaviour
             float distanceToTowers = Vector2.Distance(transform.position, tower.transform.position); //Gets the distance to each tower
             if (distanceToTowers < range) { //Check if the tower is in range
                 tower.GetComponent<Tower>().damage = (int)(tower.GetComponent<Tower>().damage * 1.2); //Increases damage by 20%
+                FindObjectOfType<AudioManager>().play("BeepBoop");
             }
         }
     }
@@ -132,10 +133,17 @@ public class Tower : MonoBehaviour
     /// </summary>
     void Shoot() {
         target.GetComponent<zom>().TakeDamage(damage);
-        if (name.Contains("Tower_2_Prefab") && target.GetComponent<zom>().speed == 1) { //Checks if the tower is the EE tower and if the zombie hasn't been slowed down yet
+        if (name.Contains("Tower_2_Prefab") && target.GetComponent<zom>().speed == 1) //Checks if the tower is the EE tower and if the zombie hasn't been slowed down yet
+        {
             float oldSpeed = target.GetComponent<zom>().speed; //Gets the zombies original speed
             StartCoroutine(Slowdown(oldSpeed)); //Calls the slowdown method which will wait 2 seconds before putting the zombie back to its default speed
+            FindObjectOfType<AudioManager>().play("ElectricShock");
+        } 
+        else if (name.Contains("Tower_3_Prefab")) //ME tower
+        {
+            FindObjectOfType<AudioManager>().play("Crossbow");
         }
+       
     }
 
     /// <summary>
