@@ -68,7 +68,16 @@ public class BuildManager : MonoBehaviour {
         GameObject tower = (GameObject)Instantiate(towerToBuild.prefab, node.transform.position, node.transform.rotation);
         node.tower = tower;
         node.cost = towerToBuild.cost;
-        FindObjectOfType<AudioManager>().play("TowerPlace");
+        if (tower.name.Contains("Tower_4_Prefab"))
+        {
+            FindObjectOfType<AudioManager>().play("TowerPlace");
+            FindObjectOfType<AudioManager>().play("ChaChing");
+        }
+        else
+        {
+            FindObjectOfType<AudioManager>().play("TowerPlace");
+        }
+        
         hideTiles();
 
     }
@@ -78,6 +87,11 @@ public class BuildManager : MonoBehaviour {
     /// </summary>
     /// <param name="node"></param> The node the user clicked on
     public void sellTowerOn(Node node) {
+
+        if (PauseMenu.GameIsPaused) {
+            Debug.Log("Game is Paused");
+            return;
+        }
 
         if (node.tower.name.Contains("Tower_1_Prefab")) {
             //TODO make it so towers have buff removed upon selling CS tower

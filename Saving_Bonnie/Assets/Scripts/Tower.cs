@@ -19,10 +19,12 @@ public class Tower : MonoBehaviour
     public float firerate = 1f; //Used to calculte cooldown between shots
     public int damage; //Amount of damage tower does
     private float fireCountdown = 0f; //Counts down how long until the next time the tower can shoot
+    private int baseDamage; //Used to know if the tower has been buffed
 
     [Header("For Business Towers")]
     public float passiveTimer = 5f; //How often the passive abilities can happen
-
+    public int income;
+    private int baseIncome;
 
     private string enemyTag = "zombie"; //Used to find the mobs with the correct tags
 
@@ -34,8 +36,10 @@ public class Tower : MonoBehaviour
         if (name.Contains("Tower_1_Prefab")) { //Checks if it is the CS tower 
             buffTowers();
         } else if (name.Contains("Tower_2_Prefab") || name.Contains("Tower_3_Prefab")) { //Checks if the towers are EE or ME
+            baseDamage = damage;
             InvokeRepeating("UpdateTarget", 0f, .5f); //Makes UpdateTarget run every 1/2 second
         } else if (name.Contains("Tower_4_Prefab")) { //Checks if it is the Business Tower
+            baseIncome = income;
             InvokeRepeating("passiveAbilities", 0f, passiveTimer); //Makes passiveAbilities run according to the timer variable
         } else { //Prints if no known tower was found
             Debug.Log("Unknown Tower");
@@ -48,6 +52,10 @@ public class Tower : MonoBehaviour
     /// Calls the shoot funciton when the countdown is zero
     /// </summary>
     void Update() {
+
+        if (name.Contains("Tower_1_Prefab")) {
+            buffTowers();
+        }
 
         if (target == null) //Does nothing if no target
             return;
@@ -97,7 +105,7 @@ public class Tower : MonoBehaviour
     /// </summary>
     void passiveAbilities() {
         if (this.name.Contains("Tower_4_Prefab")) {
-            Dollars.money += 10; //Increases money by $10 
+            Dollars.money += income; //Increases money by $10 
         }
     }
 
@@ -107,9 +115,23 @@ public class Tower : MonoBehaviour
     void buffTowers() {
         GameObject[] nearbyTowers = GameObject.FindGameObjectsWithTag("Buffable_Towers");
         foreach(GameObject tower in nearbyTowers) {
+
             float distanceToTowers = Vector2.Distance(transform.position, tower.transform.position); //Gets the distance to each tower
-            if (distanceToTowers < range) { //Check if the tower is in range
-                tower.GetComponent<Tower>().damage = (int)(tower.GetComponent<Tower>().damage * 1.2); //Increases damage by 20%
+            int damage = tower.GetComponent<Tower>().damage; //Gets current damage of tower
+            int baseDamage = tower.GetComponent<Tower>().baseDamage; //Gets base damage of tower
+            int income = tower.GetComponent<Tower>().income; //Gets current income of tower
+            int baseIncome = tower.GetComponent<Tower>().baseIncome; //Gets base income of tower
+
+            if (distanceToTowers < range) { //Check if the tower is in range and hasn't been buffed yet
+
+                if (tower.name.Contains("Tower_4_Prefab") && income == baseIncome) { //Checks if it is a business tower and if income has been buffed yet
+                    tower.GetComponent<Tower>().income += 5; //buffs income
+                    FindObjectOfType<AudioManager>().play("BeepBoop"); //plays buffing sound
+                } else if ((tower.name.Contains("Tower_2_Prefab") || tower.name.Contains("Tower_3_Prefab")) && damage == baseDamage) { //checks if EE or ME tower and if it has been buffed yet
+                    tower.GetComponent<Tower>().damage = (int)(damage * 1.2); //Increases damage by 20%
+                    FindObjectOfType<AudioManager>().play("BeepBoop"); //plays buffing sound
+                }
+
             }
         }
     }
@@ -120,9 +142,23 @@ public class Tower : MonoBehaviour
     public void debuffTower() {
         GameObject[] nearbyTowers = GameObject.FindGameObjectsWithTag("Buffable_Towers");
         foreach (GameObject tower in nearbyTowers) {
+
             float distanceToTowers = Vector2.Distance(transform.position, tower.transform.position); //Gets the distance to each tower
+            
+            //Gets current and base values of damage and income
+            int damage = tower.GetComponent<Tower>().damage;
+            int baseDamage = tower.GetComponent<Tower>().baseDamage;
+            int income = tower.GetComponent<Tower>().income;
+            int baseIncome = tower.GetComponent<Tower>().baseIncome;
+
             if (distanceToTowers < range) { //Check if the tower is in range
-                tower.GetComponent<Tower>().damage = (int)(tower.GetComponent<Tower>().damage / 1.2); //Decreases damage by 20%
+
+                if (tower.name.Contains("Tower_4_Prefab") && income > baseIncome) {
+                    tower.GetComponent<Tower>().income -= 5; //Decreses income by 5
+                } else if ((tower.name.Contains("Tower_2_Prefab") || tower.name.Contains("Tower_3_Prefab")) && damage > baseDamage) {
+                    tower.GetComponent<Tower>().damage = (int)(damage / 1.2); //Decreases damage by 20%
+                }
+
             }
         }
     }
@@ -132,10 +168,17 @@ public class Tower : MonoBehaviour
     /// </summary>
     void Shoot() {
         target.GetComponent<zom>().TakeDamage(damage);
-        if (name.Contains("Tower_2_Prefab") && target.GetComponent<zom>().speed == 1) { //Checks if the tower is the EE tower and if the zombie hasn't been slowed down yet
+        if (name.Contains("Tower_2_Prefab") && target.GetComponent<zom>().speed == 1) //Checks if the tower is the EE tower and if the zombie hasn't been slowed down yet
+        {
             float oldSpeed = target.GetComponent<zom>().speed; //Gets the zombies original speed
             StartCoroutine(Slowdown(oldSpeed)); //Calls the slowdown method which will wait 2 seconds before putting the zombie back to its default speed
+            FindObjectOfType<AudioManager>().play("ElectricShock");
+        } 
+        else if (name.Contains("Tower_3_Prefab")) //ME tower
+        {
+            FindObjectOfType<AudioManager>().play("Crossbow");
         }
+       
     }
 
     /// <summary>
