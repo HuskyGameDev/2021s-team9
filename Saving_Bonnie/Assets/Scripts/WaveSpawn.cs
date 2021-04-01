@@ -19,53 +19,46 @@ public class WaveSpawn : MonoBehaviour
     [SerializeField]
     public Transform spawn;
 
-    public int zomCount;
+    private double[] zomCounts = {1f, 5f, 10f, 20f, 25f};
 
-    private double waveCount = 1f;
+    private double[] waveTimes = {1f, 10f, 20f, 30f, 30f};
 
-    private double spawnCount = 1f;
+    private int waveCount = 0;
 
     private double timer = 2f;
 
-    private double waveTimes = 3f; 
-
-    void Start()
-    {
-        zomCount = 0;
-    }
+    private double downTime = 3f; 
 
     // Update is called once per frame
     void Update()
     {
+        GameObject[] zombies = GameObject.FindGameObjectsWithTag("zombie");
+
         if (timer <= 0) {
-            StartCoroutine(NewWave());
-            timer = waveTimes;
+            StartCoroutine(NewWave(waveCount));
+            Debug.Log("Next wave in: ");
+            timer = downTime;
         }
 
-        if (zomCount == 0 && timer > 0) {
+        if (zombies.Length == 0 && timer > 0) {
             timer -= Time.deltaTime;
         }
 
         // Game Win Condition
-        if (waveCount > 10 && zomCount == 0) {
+        if (waveCount > zomCounts.Length && zombies.Length == 0) {
             Debug.Log("You win!");
             enabled = false;
         }
     }
 
     // Handles the new wave spawns and creates enemies
-    IEnumerator NewWave() {
-        for (int i = 0; i < spawnCount; i++) {
+    IEnumerator NewWave(int roundNum) {
+        for (int i = 0; i < zomCounts[roundNum]; i++) {
             Instantiate(zombieEnemy, spawn.position, spawn.rotation);
-            zomCount++;
-            yield return new WaitForSeconds((float) (2f / spawnCount));
+            yield return new WaitForSeconds((float) (waveTimes[roundNum] / zomCounts[roundNum]));
         }
-        // Increment enemy and wave count
+        // Increment wave count
         waveCount++;
-        spawnCount++;
     }
 
-    public void KillZombie() {
-        zomCount = zomCount - 1;
-    }
 }

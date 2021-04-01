@@ -18,7 +18,7 @@ public class zom : MonoBehaviour
     public HealthBar healthBar;
 
     // Variables for the zombie behavior and animations, including the waypoint array
-    public WaveSpawn spawner;
+    public GameObject spawner;
 
     private Transform[] points;
 
@@ -54,7 +54,6 @@ public class zom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         // Ties the count for the waypoints to a counter variable for the animations
         anim.SetInteger("counter", ptCount);
 
@@ -68,15 +67,13 @@ public class zom : MonoBehaviour
 
         // TESTING PURPOSES kills the zombie at the end
         if (ptCount == points.Length) {
-            Destroy(gameObject); 
-            spawner.KillZombie();
+            Destroy(gameObject);
 	        Dollars.lives--;
         }
 
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
-            spawner.KillZombie();
             Dollars.money += 25;
         }
     }
