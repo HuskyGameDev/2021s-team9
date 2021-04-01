@@ -62,6 +62,15 @@ public class Tower : MonoBehaviour
     }
 
     /// <summary>
+    /// Called when the tower is sold/destroyed 
+    /// </summary>
+    void OnDestroy() {
+        if (name.Contains("Tower_1_Prefab")) { //Checks if it was the CS tower destroyed
+            debuffTower(); //Debuffs the towers that it previously buffed 
+        }
+    }
+
+    /// <summary>
     /// Updates the current target to a new one when a zombie gets in range or when one is closer than its current target
     /// </summary>
     void UpdateTarget(){
@@ -101,6 +110,19 @@ public class Tower : MonoBehaviour
             float distanceToTowers = Vector2.Distance(transform.position, tower.transform.position); //Gets the distance to each tower
             if (distanceToTowers < range) { //Check if the tower is in range
                 tower.GetComponent<Tower>().damage = (int)(tower.GetComponent<Tower>().damage * 1.2); //Increases damage by 20%
+            }
+        }
+    }
+
+    /// <summary>
+    /// Does the reverse of the BuffTowers() method
+    /// </summary>
+    public void debuffTower() {
+        GameObject[] nearbyTowers = GameObject.FindGameObjectsWithTag("Buffable_Towers");
+        foreach (GameObject tower in nearbyTowers) {
+            float distanceToTowers = Vector2.Distance(transform.position, tower.transform.position); //Gets the distance to each tower
+            if (distanceToTowers < range) { //Check if the tower is in range
+                tower.GetComponent<Tower>().damage = (int)(tower.GetComponent<Tower>().damage / 1.2); //Decreases damage by 20%
             }
         }
     }
