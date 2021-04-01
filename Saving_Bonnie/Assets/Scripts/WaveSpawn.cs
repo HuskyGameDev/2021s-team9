@@ -19,7 +19,7 @@ public class WaveSpawn : MonoBehaviour
     [SerializeField]
     public Transform spawn;
 
-    public int zomCount = 0;
+    public int zomCount;
 
     private double waveCount = 1f;
 
@@ -28,6 +28,11 @@ public class WaveSpawn : MonoBehaviour
     private double timer = 2f;
 
     private double waveTimes = 3f; 
+
+    void Start()
+    {
+        zomCount = 0;
+    }
 
     // Update is called once per frame
     void Update()
@@ -58,5 +63,9 @@ public class WaveSpawn : MonoBehaviour
         // Increment enemy and wave count
         waveCount++;
         spawnCount++;
+    }
+
+    public void KillZombie() {
+        zomCount = zomCount - 1;
     }
 }
