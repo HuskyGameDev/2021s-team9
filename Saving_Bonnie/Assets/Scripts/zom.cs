@@ -22,7 +22,7 @@ public class zom : MonoBehaviour
 
     private Transform[] points;
 
-    private float speed = 1f;
+    public float speed = 1f;
 
     public SpriteRenderer zomWalk;
 
