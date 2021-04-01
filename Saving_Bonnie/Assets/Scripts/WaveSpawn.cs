@@ -33,7 +33,11 @@ public class WaveSpawn : MonoBehaviour
         if (timer <= 0) {
             StartCoroutine(NewWave());
             timer = waveTimes;
+	    if (waveCount != 1){
+	    	Dollars.money = Dollars.money + 25 * (int)waveCount;
+	    }
         }
+
 
         timer -= Time.deltaTime;
 
