@@ -174,9 +174,9 @@ public class Tower : MonoBehaviour
         target.GetComponent<zom>().TakeDamage(damage);
         if (name.Contains("Tower_2_Prefab") && target.GetComponent<zom>().speed == 1) //Checks if the tower is the EE tower and if the zombie hasn't been slowed down yet
         {
+            FindObjectOfType<AudioManager>().play("ElectricShock");
             float oldSpeed = target.GetComponent<zom>().speed; //Gets the zombies original speed
             StartCoroutine(Slowdown(oldSpeed)); //Calls the slowdown method which will wait 2 seconds before putting the zombie back to its default speed
-            FindObjectOfType<AudioManager>().play("ElectricShock");
         } 
         else if (name.Contains("Tower_3_Prefab")) //ME tower
         {

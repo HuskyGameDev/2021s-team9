@@ -96,9 +96,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   range: 4
-  cooldown: 3
+  cooldown: 4
   firerate: 1
-  damage: 10
+  damage: 12
   slowdownTime: 2
   slowdownAmount: 0.6
   passiveTimer: 0

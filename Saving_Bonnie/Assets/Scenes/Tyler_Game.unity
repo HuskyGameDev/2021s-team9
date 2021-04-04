@@ -28554,19 +28554,19 @@ MonoBehaviour:
   tower1:
     prefab: {fileID: 2242720189373444907, guid: 02c0cf7469a163543a8024105fecf417,
       type: 3}
-    cost: 1
+    cost: 25
   tower2:
     prefab: {fileID: 2242720189373444907, guid: 7584f49e093ef384eb9c099a3766f94b,
       type: 3}
-    cost: 2
+    cost: 5
   tower3:
     prefab: {fileID: 2242720189373444907, guid: 6183e070ae1b8e14e9177ab054219ac2,
       type: 3}
-    cost: 3
+    cost: 10
   tower4:
     prefab: {fileID: 2242720189373444907, guid: a58ee7a436b0e3e42be9a7cb29358ffb,
       type: 3}
-    cost: 4
+    cost: 100
 --- !u!1001 &919871329
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29132,7 +29132,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: ElectricShock
     clip: {fileID: 8300000, guid: a8e7d7a9a93692448ba36c9351483a2f, type: 3}
-    volume: 0.5
+    volume: 0.54
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -40579,6 +40579,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 882861159}
     m_Modifications:
+    - target: {fileID: 41377372365177580, guid: e53f3e7e4b1566a4cac9283b819991ee,
+        type: 3}
+      propertyPath: m_Text
+      value: CS 25
+      objectReference: {fileID: 0}
     - target: {fileID: 41377372645925576, guid: e53f3e7e4b1566a4cac9283b819991ee,
         type: 3}
       propertyPath: m_Name
@@ -40728,6 +40733,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 882861159}
     m_Modifications:
+    - target: {fileID: 2884818404781110749, guid: 06a22bbf82cb6114a89727add6bde3ce,
+        type: 3}
+      propertyPath: m_Text
+      value: Business 50
+      objectReference: {fileID: 0}
     - target: {fileID: 2884818406671465488, guid: 06a22bbf82cb6114a89727add6bde3ce,
         type: 3}
       propertyPath: m_Name
@@ -41017,6 +41027,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3314341932632365673, guid: 7902fd0292dd37244bb0fc5812820759,
+        type: 3}
+      propertyPath: m_Text
+      value: ME 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7902fd0292dd37244bb0fc5812820759, type: 3}
 --- !u!1001 &5984063916860705940
@@ -41026,6 +41041,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 882861159}
     m_Modifications:
+    - target: {fileID: 5984063915365484010, guid: b5e473242c5495f4687b0a9eaeaffacb,
+        type: 3}
+      propertyPath: m_Text
+      value: EE 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5984063916236858040, guid: b5e473242c5495f4687b0a9eaeaffacb,
         type: 3}
       propertyPath: m_Name
