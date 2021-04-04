@@ -171,19 +171,21 @@ public class Tower : MonoBehaviour
     /// Causes the tower to damage the zombie
     /// </summary>
     void Shoot() {
-        float currentSpeed = target.GetComponent<zom>().currentSpeed;
-        float baseSpeed = target.GetComponent<zom>().baseSpeed;
+
+        float currentSpeed = target.GetComponent<zom>().currentSpeed; //Gets the current speed of the zombie
+        float baseSpeed = target.GetComponent<zom>().baseSpeed; //Gets the base speed of the zombie
+
         if (name.Contains("Tower_2_Prefab") && baseSpeed == currentSpeed) //Checks if the tower is the EE tower and if the zombie hasn't been slowed down yet
         {
-            FindObjectOfType<AudioManager>().play("ElectricShock");
-            target.GetComponent<zom>().TakeDamage(damage);
-            float oldSpeed = target.GetComponent<zom>().currentSpeed; //Gets the zombies original speed
+            FindObjectOfType<AudioManager>().play("ElectricShock"); //Plays sound linked to tower
+            target.GetComponent<zom>().TakeDamage(damage); //Damages zombie
+            float oldSpeed = target.GetComponent<zom>().currentSpeed; //Gets the zombies original speed for resetting it
             StartCoroutine(Slowdown(oldSpeed)); //Calls the slowdown method which will wait 2 seconds before putting the zombie back to its default speed
         } 
         else if (name.Contains("Tower_3_Prefab")) //ME tower
         {
-            target.GetComponent<zom>().TakeDamage(damage);
-            FindObjectOfType<AudioManager>().play("Crossbow");
+            target.GetComponent<zom>().TakeDamage(damage); //damages zombie
+            FindObjectOfType<AudioManager>().play("Crossbow"); //plays sound linked to the tower
         }
        
     }

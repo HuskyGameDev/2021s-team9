@@ -32,9 +32,9 @@ public class zom : MonoBehaviour
 
     public Animator anim;
 
-    public float baseSpeed;
+    public float baseSpeed; //Holds the base speed of the zombie
     [Header("Leave Empty in Unity")]
-    public float currentSpeed;
+    public float currentSpeed; //Stores the current speed of the zombie
 
     private int ptCount = 0;
 
