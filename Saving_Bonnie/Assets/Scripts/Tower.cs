@@ -32,6 +32,8 @@ public class Tower : MonoBehaviour
 
     private string enemyTag = "zombie"; //Used to find the mobs with the correct tags
 
+    private int baseSpeed;
+
     /// <summary>
     /// Causes the damage to be set for the towers, and also causes methods to repeat at desired intervals
     /// </summary>
@@ -172,7 +174,7 @@ public class Tower : MonoBehaviour
     /// </summary>
     void Shoot() {
         target.GetComponent<zom>().TakeDamage(damage);
-        if (name.Contains("Tower_2_Prefab") && target.GetComponent<zom>().speed == 1) //Checks if the tower is the EE tower and if the zombie hasn't been slowed down yet
+        if (name.Contains("Tower_2_Prefab") && target.GetComponent<zom>().speed == 1.5) //Checks if the tower is the EE tower and if the zombie hasn't been slowed down yet
         {
             FindObjectOfType<AudioManager>().play("ElectricShock");
             float oldSpeed = target.GetComponent<zom>().speed; //Gets the zombies original speed
