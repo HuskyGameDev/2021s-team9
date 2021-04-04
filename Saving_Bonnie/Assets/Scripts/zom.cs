@@ -22,8 +22,6 @@ public class zom : MonoBehaviour
 
     private Transform[] points;
 
-    public float speed = 1f;
-
     public SpriteRenderer zomWalk;
 
     public Sprite zomWalkDown;
@@ -34,11 +32,18 @@ public class zom : MonoBehaviour
 
     public Animator anim;
 
+    public float baseSpeed;
+    [Header("Leave Empty in Unity")]
+    public float currentSpeed;
+
     private int ptCount = 0;
 
     // Start condition, puts the zombie character at the start of the path
     void Start()
     {
+
+        currentSpeed = baseSpeed;
+
         points = new Transform[waypt.pts.Length];
         for (int i = 0; i < waypt.pts.Length; i++) {
             points[i] = waypt.pts[i];
@@ -58,7 +63,7 @@ public class zom : MonoBehaviour
         anim.SetInteger("counter", ptCount);
 
         // Points the zombie to walk towards the next waypoint
-        transform.position = Vector2.MoveTowards(transform.position, points[ptCount].transform.position, speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, points[ptCount].transform.position, currentSpeed * Time.deltaTime);
 
         // Sets the zombie to point at a new waypoint when it reaches the previous one
         if (transform.position == points[ptCount].transform.position) {

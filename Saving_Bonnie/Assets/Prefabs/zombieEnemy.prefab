@@ -120,7 +120,6 @@ MonoBehaviour:
   currentHealth: 0
   healthBar: {fileID: 6982998180714041327}
   spawner: {fileID: 3496506172990501110, guid: ade8e536fdc423e4daf254cd7e31f5e6, type: 3}
-  speed: 1.5
   zomWalk: {fileID: 260921285333088681}
   zomWalkDown: {fileID: 7008875583630330590, guid: c496208f354f6f8439a135253db99480,
     type: 3}
@@ -129,6 +128,8 @@ MonoBehaviour:
   zomWalkLeft: {fileID: 6795254589191955114, guid: c496208f354f6f8439a135253db99480,
     type: 3}
   anim: {fileID: 260921285333088680}
+  baseSpeed: 1.5
+  currentSpeed: 0
 --- !u!1 &3190273009960811706
 GameObject:
   m_ObjectHideFlags: 0

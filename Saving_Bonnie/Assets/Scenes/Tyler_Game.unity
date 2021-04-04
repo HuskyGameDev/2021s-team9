@@ -40736,7 +40736,7 @@ PrefabInstance:
     - target: {fileID: 2884818404781110749, guid: 06a22bbf82cb6114a89727add6bde3ce,
         type: 3}
       propertyPath: m_Text
-      value: Business 50
+      value: Business 100
       objectReference: {fileID: 0}
     - target: {fileID: 2884818406671465488, guid: 06a22bbf82cb6114a89727add6bde3ce,
         type: 3}
