@@ -22,14 +22,6 @@ public class zom : MonoBehaviour
 
     private Transform[] points;
 
-    public SpriteRenderer zomWalk;
-
-    public Sprite zomWalkDown;
-
-    public Sprite zomWalkRight;
-
-    public Sprite zomWalkLeft;
-
     public Animator anim;
 
     public float baseSpeed; //Holds the base speed of the zombie
@@ -41,6 +33,9 @@ public class zom : MonoBehaviour
     // Start condition, puts the zombie character at the start of the path
     void Start()
     {
+        anim = gameObject.GetComponent<Animator>();
+
+        anim.speed = 0.6f;
 
         currentSpeed = baseSpeed;
 
@@ -59,11 +54,16 @@ public class zom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Ties the count for the waypoints to a counter variable for the animations
-        anim.SetInteger("counter", ptCount);
-
         // Points the zombie to walk towards the next waypoint
         transform.position = Vector2.MoveTowards(transform.position, points[ptCount].transform.position, currentSpeed * Time.deltaTime);
+
+        if (transform.position == points[1].transform.position) {
+            transform.rotation = Quaternion.Euler(Vector3.forward * -90);
+        } else if (transform.position == points[2].transform.position || transform.position == points[4].transform.position) {
+            transform.rotation = Quaternion.Euler(Vector3.forward * 0);
+        } else if (transform.position == points[3].transform.position) {
+            transform.rotation = Quaternion.Euler(Vector3.forward * 90);
+        }
 
         // Sets the zombie to point at a new waypoint when it reaches the previous one
         if (transform.position == points[ptCount].transform.position) {

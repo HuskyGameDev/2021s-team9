@@ -32,11 +32,12 @@ public class Tower : MonoBehaviour
 
     private string enemyTag = "zombie"; //Used to find the mobs with the correct tags
 
+    public Animator anim; 
+
     /// <summary>
     /// Causes the damage to be set for the towers, and also causes methods to repeat at desired intervals
     /// </summary>
     void Start() {
-
         if (name.Contains("Tower_1_Prefab")) { //Checks if it is the CS tower 
             buffTowers();
         } else if (name.Contains("Tower_2_Prefab") || name.Contains("Tower_3_Prefab")) { //Checks if the towers are EE or ME
@@ -49,14 +50,13 @@ public class Tower : MonoBehaviour
             Debug.Log("Unknown Tower");
         }
 
-
+        anim = gameObject.GetComponent<Animator>();
     }
 
     /// <summary>
     /// Calls the shoot funciton when the countdown is zero
     /// </summary>
     void Update() {
-
         if (name.Contains("Tower_1_Prefab")) {
             buffTowers();
         }
@@ -109,7 +109,9 @@ public class Tower : MonoBehaviour
     /// </summary>
     void passiveAbilities() {
         if (this.name.Contains("Tower_4_Prefab")) {
+            anim.SetBool("money", true);
             Dollars.money += income; //Increases money by income 
+            anim.SetBool("money", false);
         }
     }
 
@@ -171,6 +173,7 @@ public class Tower : MonoBehaviour
     /// Causes the tower to damage the zombie
     /// </summary>
     void Shoot() {
+        anim.SetBool("shoot", true);
 
         float currentSpeed = target.GetComponent<zom>().currentSpeed; //Gets the current speed of the zombie
         float baseSpeed = target.GetComponent<zom>().baseSpeed; //Gets the base speed of the zombie
@@ -187,7 +190,8 @@ public class Tower : MonoBehaviour
             target.GetComponent<zom>().TakeDamage(damage); //damages zombie
             FindObjectOfType<AudioManager>().play("Crossbow"); //plays sound linked to the tower
         }
-       
+
+        anim.SetBool("shoot", false);
     }
 
     /// <summary>
@@ -196,11 +200,15 @@ public class Tower : MonoBehaviour
     /// <param name="oldSpeed"></param> The default speed of the zombie
     /// <returns></returns>
     IEnumerator Slowdown(float oldSpeed) {
+        anim.SetBool("shock", true);
         target.GetComponent<zom>().currentSpeed = oldSpeed * slowdownAmount; //Reduces the zombies speed
+        target.GetComponent<zom>().anim.speed *= slowdownAmount;
         yield return new WaitForSecondsRealtime(slowdownTime); //Causes the system to wait 2 seconds before going to the next line
         if (target != null) { //Checks if the target died during the wait
             target.GetComponent<zom>().currentSpeed = oldSpeed; //Resets the zombies speed
+            target.GetComponent<zom>().anim.speed /= slowdownAmount;
         }
+        anim.SetBool("shock", false);
     }
     
 }

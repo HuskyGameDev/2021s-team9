@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8036098461337349930}
   - component: {fileID: 6529991585828223724}
   - component: {fileID: -6891242187927140528}
+  - component: {fileID: 1272170799760805745}
   m_Layer: 0
   m_Name: Tower_4_Prefab
   m_TagString: Buffable_Towers
@@ -103,3 +104,23 @@ MonoBehaviour:
   slowdownAmount: 0
   passiveTimer: 5
   income: 10
+  anim: {fileID: 0}
+--- !u!95 &1272170799760805745
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2242720189373444907}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 51ec20b8027f72c449b7328609bf6c47, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
