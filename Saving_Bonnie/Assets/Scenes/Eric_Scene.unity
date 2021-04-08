@@ -375,7 +375,6 @@ MonoBehaviour:
   zombieEnemy: {fileID: 260921285333088682, guid: fd8c6a9bd2c5c0e459cf6dae685495e7,
     type: 3}
   spawn: {fileID: 1973681805}
-  zomCount: 0
 --- !u!4 &36237750
 Transform:
   m_ObjectHideFlags: 0
@@ -408,6 +407,92 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2047014045}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &66906726
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 66906728}
+  - component: {fileID: 66906727}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &66906727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66906726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5438e9c3390ac8643bcfa8bcb1f5b892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: ButtonClick
+    clip: {fileID: 8300000, guid: ebdb284636e99ea42abad9db751fa5a6, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: TowerPlace
+    clip: {fileID: 8300000, guid: eabfc6cca07393346839c55216736002, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BeTenacious
+    clip: {fileID: 8300000, guid: 60750f760d9fb534a84bcfe2c3f62fd5, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BeepBoop
+    clip: {fileID: 8300000, guid: 09b87ad6f0c9f3444a1a77b894d438f4, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ChaChing
+    clip: {fileID: 8300000, guid: 0feb0dd8115cd9c42b4c4401c85c0732, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Crossbow
+    clip: {fileID: 8300000, guid: 2a7e191255c90974bac658e1de20c982, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ElectricShock
+    clip: {fileID: 8300000, guid: a8e7d7a9a93692448ba36c9351483a2f, type: 3}
+    volume: 0.5
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+--- !u!4 &66906728
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66906726}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &72041491 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3033762003283538385, guid: 19d2a77b93fcdaa46b0eab4da8eb600b,
@@ -28527,19 +28612,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tower1:
     prefab: {fileID: 41377372645925576, guid: e53f3e7e4b1566a4cac9283b819991ee, type: 3}
-    cost: 1
+    cost: 25
   tower2:
     prefab: {fileID: 5984063916236858040, guid: b5e473242c5495f4687b0a9eaeaffacb,
       type: 3}
-    cost: 2
+    cost: 5
   tower3:
     prefab: {fileID: 3314341932098436544, guid: 7902fd0292dd37244bb0fc5812820759,
       type: 3}
-    cost: 3
+    cost: 10
   tower4:
     prefab: {fileID: 2884818406671465488, guid: 06a22bbf82cb6114a89727add6bde3ce,
       type: 3}
-    cost: 4
+    cost: 100
 --- !u!114 &882861165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29065,92 +29150,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19d2a77b93fcdaa46b0eab4da8eb600b, type: 3}
---- !u!1 &1052134692
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1052134694}
-  - component: {fileID: 1052134693}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1052134693
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1052134692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5438e9c3390ac8643bcfa8bcb1f5b892, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: ButtonClick
-    clip: {fileID: 8300000, guid: ebdb284636e99ea42abad9db751fa5a6, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: TowerPlace
-    clip: {fileID: 8300000, guid: eabfc6cca07393346839c55216736002, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: BeTenacious
-    clip: {fileID: 8300000, guid: 60750f760d9fb534a84bcfe2c3f62fd5, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: BeepBoop
-    clip: {fileID: 8300000, guid: 09b87ad6f0c9f3444a1a77b894d438f4, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: ChaChing
-    clip: {fileID: 8300000, guid: 0feb0dd8115cd9c42b4c4401c85c0732, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Crossbow
-    clip: {fileID: 8300000, guid: 2a7e191255c90974bac658e1de20c982, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: ElectricShock
-    clip: {fileID: 8300000, guid: a8e7d7a9a93692448ba36c9351483a2f, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
---- !u!4 &1052134694
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1052134692}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1056655786
 GameObject:
   m_ObjectHideFlags: 0
