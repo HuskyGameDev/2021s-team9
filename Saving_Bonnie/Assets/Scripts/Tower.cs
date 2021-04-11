@@ -76,7 +76,6 @@ public class Tower : MonoBehaviour
         }
 
         fireCountdown -= Time.deltaTime; //Ticks the cooldown down with each second
-
     }
 
     /// <summary>
