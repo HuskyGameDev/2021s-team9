@@ -79,7 +79,7 @@ public class zom : MonoBehaviour
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
-            Dollars.money += 5;
+            Dollars.money += 50;
         }
     }
 
