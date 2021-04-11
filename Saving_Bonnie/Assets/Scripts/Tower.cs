@@ -119,6 +119,7 @@ public class Tower : MonoBehaviour
     /// Buffs tower upon the creation of CS towers
     /// </summary>
     void buffTowers() {
+
         GameObject[] nearbyTowers = GameObject.FindGameObjectsWithTag("Buffable_Towers");
         foreach(GameObject tower in nearbyTowers) {
 
@@ -173,7 +174,7 @@ public class Tower : MonoBehaviour
     /// Causes the tower to damage the zombie
     /// </summary>
     void Shoot() {
-        anim.SetBool("shoot", true);
+        
 
         float currentSpeed = target.GetComponent<zom>().currentSpeed; //Gets the current speed of the zombie
         float baseSpeed = target.GetComponent<zom>().baseSpeed; //Gets the base speed of the zombie
@@ -187,11 +188,11 @@ public class Tower : MonoBehaviour
         } 
         else if (name.Contains("Tower_3_Prefab")) //ME tower
         {
+            anim.SetBool("shoot", true);
             target.GetComponent<zom>().TakeDamage(damage); //damages zombie
             FindObjectOfType<AudioManager>().play("Crossbow"); //plays sound linked to the tower
+            anim.SetBool("shoot", false);
         }
-
-        anim.SetBool("shoot", false);
     }
 
     /// <summary>
