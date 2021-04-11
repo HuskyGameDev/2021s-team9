@@ -38,6 +38,9 @@ public class Tower : MonoBehaviour
     /// Causes the damage to be set for the towers, and also causes methods to repeat at desired intervals
     /// </summary>
     void Start() {
+
+        anim = gameObject.GetComponent<Animator>();
+
         if (name.Contains("Tower_1_Prefab")) { //Checks if it is the CS tower 
             buffTowers();
         } else if (name.Contains("Tower_2_Prefab") || name.Contains("Tower_3_Prefab")) { //Checks if the towers are EE or ME
@@ -50,7 +53,6 @@ public class Tower : MonoBehaviour
             Debug.Log("Unknown Tower");
         }
 
-        anim = gameObject.GetComponent<Animator>();
     }
 
     /// <summary>
@@ -186,7 +188,7 @@ public class Tower : MonoBehaviour
             FindObjectOfType<AudioManager>().play("ElectricShock"); //Plays sound linked to tower
             anim.SetTrigger("shockTrigger");
             target.GetComponent<zom>().TakeDamage(damage); //Damages zombie
-            StartCoroutine(Slowdown(baseSpeed)); //Calls the slowdown method which will wait 2 seconds before putting the zombie back to its default speed
+            StartCoroutine(target.GetComponent<zom>().Slowdown(slowdownAmount, slowdownTime)); //Calls the slowdown method which will wait 2 seconds before putting the zombie back to its default speed
         } 
         else if (name.Contains("Tower_3_Prefab")) //ME tower
         {
@@ -195,20 +197,6 @@ public class Tower : MonoBehaviour
             FindObjectOfType<AudioManager>().play("Crossbow"); //plays sound linked to the tower
         }
     }
-
-    /// <summary>
-    /// Has the system slow the zombie down for 2 seconds
-    /// </summary>
-    /// <param name="oldSpeed"></param> The default speed of the zombie
-    /// <returns></returns>
-    IEnumerator Slowdown(float oldSpeed) {
-        target.GetComponent<zom>().currentSpeed = oldSpeed * slowdownAmount; //Reduces the zombies speed
-        target.GetComponent<zom>().anim.speed *= slowdownAmount;
-        yield return new WaitForSecondsRealtime(slowdownTime); //Causes the system to wait 2 seconds before going to the next line
-        if (target != null) { //Checks if the target died during the wait
-            target.GetComponent<zom>().currentSpeed = oldSpeed; //Resets the zombies speed
-            target.GetComponent<zom>().anim.speed /= slowdownAmount;
-        }
-    }
+    
     
 }

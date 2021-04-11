@@ -102,7 +102,7 @@ MonoBehaviour:
   firerate: 1
   damage: 12
   slowdownTime: 2
-  slowdownAmount: 0.6
+  slowdownAmount: 0.7
   passiveTimer: 0
   income: 0
   anim: {fileID: 0}
