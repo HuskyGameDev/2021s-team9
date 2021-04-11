@@ -57,6 +57,12 @@ public class Tower : MonoBehaviour
     /// Calls the shoot funciton when the countdown is zero
     /// </summary>
     void Update() {
+        if (target != null) {
+            Quaternion targeting = Quaternion.LookRotation(target.transform.position - transform.position, transform.TransformDirection(Vector3.up));
+            transform.rotation = new Quaternion(0, 0, targeting.z, targeting.w);
+            //transform.rotation = rotateTemp * Quaternion.Euler(0, 0, 90f);
+        }
+        
         if (name.Contains("Tower_1_Prefab")) {
             buffTowers();
         }
@@ -109,9 +115,8 @@ public class Tower : MonoBehaviour
     /// </summary>
     void passiveAbilities() {
         if (this.name.Contains("Tower_4_Prefab")) {
-            anim.SetBool("money", true);
+            anim.SetTrigger("moneyTrigger");
             Dollars.money += income; //Increases money by income 
-            anim.SetBool("money", false);
         }
     }
 
@@ -119,7 +124,6 @@ public class Tower : MonoBehaviour
     /// Buffs tower upon the creation of CS towers
     /// </summary>
     void buffTowers() {
-
         GameObject[] nearbyTowers = GameObject.FindGameObjectsWithTag("Buffable_Towers");
         foreach(GameObject tower in nearbyTowers) {
 
@@ -130,7 +134,8 @@ public class Tower : MonoBehaviour
             int baseIncome = tower.GetComponent<Tower>().baseIncome; //Gets base income of tower
 
             if (distanceToTowers < range) { //Check if the tower is in range and hasn't been buffed yet
-
+                
+                anim.SetTrigger("buffTrigger");
                 if (tower.name.Contains("Tower_4_Prefab") && income == baseIncome) { //Checks if it is a business tower and if income has been buffed yet
                     tower.GetComponent<Tower>().income += 5; //buffs income
                     FindObjectOfType<AudioManager>().play("BeepBoop"); //plays buffing sound
@@ -174,24 +179,22 @@ public class Tower : MonoBehaviour
     /// Causes the tower to damage the zombie
     /// </summary>
     void Shoot() {
-        
-
         float currentSpeed = target.GetComponent<zom>().currentSpeed; //Gets the current speed of the zombie
         float baseSpeed = target.GetComponent<zom>().baseSpeed; //Gets the base speed of the zombie
 
         if (name.Contains("Tower_2_Prefab") && baseSpeed == currentSpeed) //Checks if the tower is the EE tower and if the zombie hasn't been slowed down yet
         {
             FindObjectOfType<AudioManager>().play("ElectricShock"); //Plays sound linked to tower
+            anim.SetTrigger("shockTrigger");
             target.GetComponent<zom>().TakeDamage(damage); //Damages zombie
             float oldSpeed = target.GetComponent<zom>().currentSpeed; //Gets the zombies original speed for resetting it
             StartCoroutine(Slowdown(oldSpeed)); //Calls the slowdown method which will wait 2 seconds before putting the zombie back to its default speed
         } 
         else if (name.Contains("Tower_3_Prefab")) //ME tower
         {
-            anim.SetBool("shoot", true);
             target.GetComponent<zom>().TakeDamage(damage); //damages zombie
+            anim.SetTrigger("shootTrigger");
             FindObjectOfType<AudioManager>().play("Crossbow"); //plays sound linked to the tower
-            anim.SetBool("shoot", false);
         }
     }
 
@@ -201,7 +204,6 @@ public class Tower : MonoBehaviour
     /// <param name="oldSpeed"></param> The default speed of the zombie
     /// <returns></returns>
     IEnumerator Slowdown(float oldSpeed) {
-        anim.SetBool("shock", true);
         target.GetComponent<zom>().currentSpeed = oldSpeed * slowdownAmount; //Reduces the zombies speed
         target.GetComponent<zom>().anim.speed *= slowdownAmount;
         yield return new WaitForSecondsRealtime(slowdownTime); //Causes the system to wait 2 seconds before going to the next line
@@ -209,7 +211,6 @@ public class Tower : MonoBehaviour
             target.GetComponent<zom>().currentSpeed = oldSpeed; //Resets the zombies speed
             target.GetComponent<zom>().anim.speed /= slowdownAmount;
         }
-        anim.SetBool("shock", false);
     }
     
 }
