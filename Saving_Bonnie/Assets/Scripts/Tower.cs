@@ -187,8 +187,7 @@ public class Tower : MonoBehaviour
             FindObjectOfType<AudioManager>().play("ElectricShock"); //Plays sound linked to tower
             anim.SetTrigger("shockTrigger");
             target.GetComponent<zom>().TakeDamage(damage); //Damages zombie
-            float oldSpeed = target.GetComponent<zom>().currentSpeed; //Gets the zombies original speed for resetting it
-            StartCoroutine(Slowdown(oldSpeed)); //Calls the slowdown method which will wait 2 seconds before putting the zombie back to its default speed
+            StartCoroutine(Slowdown(baseSpeed)); //Calls the slowdown method which will wait 2 seconds before putting the zombie back to its default speed
         } 
         else if (name.Contains("Tower_3_Prefab")) //ME tower
         {
