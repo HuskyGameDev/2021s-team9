@@ -32,12 +32,14 @@ public class Tower : MonoBehaviour
 
     private string enemyTag = "zombie"; //Used to find the mobs with the correct tags
 
-    public Animator anim; 
+    private Animator anim; 
 
     /// <summary>
     /// Causes the damage to be set for the towers, and also causes methods to repeat at desired intervals
     /// </summary>
     void Start() {
+        anim = gameObject.GetComponent<Animator>();
+
         if (name.Contains("Tower_1_Prefab")) { //Checks if it is the CS tower 
             buffTowers();
         } else if (name.Contains("Tower_2_Prefab") || name.Contains("Tower_3_Prefab")) { //Checks if the towers are EE or ME
@@ -49,8 +51,6 @@ public class Tower : MonoBehaviour
         } else { //Prints if no known tower was found
             Debug.Log("Unknown Tower");
         }
-
-        anim = gameObject.GetComponent<Animator>();
     }
 
     /// <summary>
@@ -58,9 +58,7 @@ public class Tower : MonoBehaviour
     /// </summary>
     void Update() {
         if (target != null) {
-            Quaternion targeting = Quaternion.LookRotation(target.transform.position - transform.position, transform.TransformDirection(Vector3.up));
-            transform.rotation = new Quaternion(0, 0, targeting.z, targeting.w);
-            //transform.rotation = rotateTemp * Quaternion.Euler(0, 0, 90f);
+            transform.right = target.position - transform.position;
         }
         
         if (name.Contains("Tower_1_Prefab")) {
@@ -134,14 +132,14 @@ public class Tower : MonoBehaviour
             int baseIncome = tower.GetComponent<Tower>().baseIncome; //Gets base income of tower
 
             if (distanceToTowers < range) { //Check if the tower is in range and hasn't been buffed yet
-                
-                anim.SetTrigger("buffTrigger");
                 if (tower.name.Contains("Tower_4_Prefab") && income == baseIncome) { //Checks if it is a business tower and if income has been buffed yet
                     tower.GetComponent<Tower>().income += 5; //buffs income
                     FindObjectOfType<AudioManager>().play("BeepBoop"); //plays buffing sound
+                    anim.SetTrigger("buffTrigger");
                 } else if ((tower.name.Contains("Tower_2_Prefab") || tower.name.Contains("Tower_3_Prefab")) && damage == baseDamage) { //checks if EE or ME tower and if it has been buffed yet
                     tower.GetComponent<Tower>().damage = (int)(damage * 1.2); //Increases damage by 20%
                     FindObjectOfType<AudioManager>().play("BeepBoop"); //plays buffing sound
+                    anim.SetTrigger("buffTrigger");
                 }
 
             }

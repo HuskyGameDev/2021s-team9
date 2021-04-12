@@ -7,7 +7,7 @@ public class Dollars : MonoBehaviour
     public static int money;
     public static int lives;
 
-    public int startMoney = 100;
+    public int startMoney = 10;
     public int startLives = 15;
 
     void Start(){
