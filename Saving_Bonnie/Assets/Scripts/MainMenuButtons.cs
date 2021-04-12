@@ -34,4 +34,11 @@ public class MainMenuButtons : MonoBehaviour
 		Debug.Log("Loading"); //Prints to debug screen to ensure button was pressed
 		SceneManager.LoadScene("Tutorial"); //Loads the tutorial page
 	}
+
+	public void Menu()
+	{
+		FindObjectOfType<AudioManager>().play("ButtonClick");
+		Debug.Log("Loading"); //Prints to debug screen to ensure button was pressed
+		SceneManager.LoadScene("Main Menu"); //Loads a level based on the scene selected in unity
+	}
 }

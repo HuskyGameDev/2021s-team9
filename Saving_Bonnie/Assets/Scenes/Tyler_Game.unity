@@ -31817,7 +31817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e59c10874edc94f9cd75018958d7b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startMoney: 1000
+  startMoney: 10
   startLives: 15
 --- !u!1001 &1701708508
 PrefabInstance:

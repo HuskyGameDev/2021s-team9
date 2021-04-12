@@ -9,6 +9,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WaveSpawn : MonoBehaviour
 {
@@ -34,6 +35,13 @@ public class WaveSpawn : MonoBehaviour
     {
         GameObject[] zombies = GameObject.FindGameObjectsWithTag("zombie");
 
+        // Game Win Condition
+        if (waveCount >= zomCounts.Length) {
+            Debug.Log("You win!");
+            SceneManager.LoadScene("Win_Screen");
+            enabled = false;
+        }
+
         if (timer <= 0) {
             StartCoroutine(NewWave(waveCount));
             Debug.Log("Next wave in: ");
@@ -42,12 +50,6 @@ public class WaveSpawn : MonoBehaviour
 
         if (zombies.Length == 0 && timer > 0) {
             timer -= Time.deltaTime;
-        }
-
-        // Game Win Condition
-        if (waveCount > zomCounts.Length && zombies.Length == 0) {
-            Debug.Log("You win!");
-            enabled = false;
         }
     }
 

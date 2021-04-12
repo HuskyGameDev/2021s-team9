@@ -70,7 +70,7 @@ public class zom : MonoBehaviour
             ptCount++;
         }
 
-        // TESTING PURPOSES kills the zombie at the end
+        // Kills the zombie at the end, and takes away lives
         if (ptCount == points.Length) {
             Destroy(gameObject);
 	        Dollars.lives--;
