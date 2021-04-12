@@ -89,5 +89,15 @@ public class zom : MonoBehaviour
         currentHealth -= damage;
         healthBar.setHealth(currentHealth);
     }
+
+    public IEnumerator Slowdown(float slowdownAmount, int slowdownTime) {
+        currentSpeed = baseSpeed * slowdownAmount; //Reduces the zombies speed
+        anim.speed *= slowdownAmount;
+        yield return new WaitForSecondsRealtime(slowdownTime); //Causes the system to wait 2 seconds before going to the next line
+        //if (target != null) { //Checks if the target died during the wait
+            currentSpeed = baseSpeed; //Resets the zombies speed
+            anim.speed /= slowdownAmount;
+        //}
+    }
     
 }
