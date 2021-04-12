@@ -65,7 +65,7 @@ public class BuildManager : MonoBehaviour {
         }
 
         Dollars.money -= towerToBuild.cost;
-        GameObject tower = (GameObject)Instantiate(towerToBuild.prefab, node.transform.position, node.transform.rotation);
+        GameObject tower = (GameObject)Instantiate(towerToBuild.prefab, node.transform.position, Quaternion.Euler(0, 0, 270));
         node.tower = tower;
         node.cost = towerToBuild.cost;
         if (tower.name.Contains("Tower_4_Prefab"))
