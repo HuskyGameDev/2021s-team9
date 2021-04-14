@@ -9,6 +9,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class zom : MonoBehaviour
 {
@@ -74,6 +75,9 @@ public class zom : MonoBehaviour
         if (ptCount == points.Length) {
             Destroy(gameObject);
 	        Dollars.lives--;
+            if(Dollars.lives <= 0) {
+                SceneManager.LoadScene("GameOver_Screen");
+            }
         }
 
         if (currentHealth <= 0)
