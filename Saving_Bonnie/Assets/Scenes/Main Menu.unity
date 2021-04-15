@@ -157,6 +157,18 @@ MonoBehaviour:
     pitch: 2.49
     loop: 0
     source: {fileID: 0}
+  - name: NoBeer
+    clip: {fileID: 8300000, guid: 9b739059283abb14c9f9c25e7fcd0c32, type: 3}
+    volume: 0.096
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Theme
+    clip: {fileID: 8300000, guid: 16b202567dd34cd4d955dd200e3e3c04, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
 --- !u!4 &72303723
 Transform:
   m_ObjectHideFlags: 0

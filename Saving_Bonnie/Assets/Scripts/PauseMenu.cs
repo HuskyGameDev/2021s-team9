@@ -32,6 +32,7 @@ public class PauseMenu : MonoBehaviour
     public void Resume ()
     {
         //remove pause menu UI and unfreeze time
+        FindObjectOfType<AudioManager>().play("ButtonClick");
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
@@ -49,6 +50,7 @@ public class PauseMenu : MonoBehaviour
     //returns the player to the main menu
     public void LoadMenu ()
     {
+        FindObjectOfType<AudioManager>().play("ButtonClick");
         Resume();
         SceneManager.LoadScene("Main Menu");
     }
@@ -56,6 +58,7 @@ public class PauseMenu : MonoBehaviour
     //terminates the game
     public void QuitGame ()
     {
+        FindObjectOfType<AudioManager>().play("ButtonClick");
         Debug.Log("Quitting Game...");
         Application.Quit();
     }

@@ -29738,7 +29738,7 @@ MonoBehaviour:
   - name: ButtonClick
     clip: {fileID: 8300000, guid: ebdb284636e99ea42abad9db751fa5a6, type: 3}
     volume: 1
-    pitch: 1
+    pitch: 2.49
     loop: 0
     source: {fileID: 0}
   - name: TowerPlace
@@ -29776,6 +29776,18 @@ MonoBehaviour:
     volume: 0.5
     pitch: 1.5
     loop: 0
+    source: {fileID: 0}
+  - name: NoBeer
+    clip: {fileID: 8300000, guid: 9b739059283abb14c9f9c25e7fcd0c32, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Theme
+    clip: {fileID: 8300000, guid: 16b202567dd34cd4d955dd200e3e3c04, type: 3}
+    volume: 0.025
+    pitch: 1
+    loop: 1
     source: {fileID: 0}
 --- !u!4 &1159630001
 Transform:
