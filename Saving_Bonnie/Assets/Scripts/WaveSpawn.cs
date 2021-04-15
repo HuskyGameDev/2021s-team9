@@ -24,7 +24,7 @@ public class WaveSpawn : MonoBehaviour
 
     private double[] waveTimes = {1f, 10f, 20f, 30f, 30f};
 
-    private int waveCount = 0;
+    public int waveCount = 0;
 
     private double timer = 2f;
 
