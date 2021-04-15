@@ -32053,7 +32053,6 @@ GameObject:
   - component: {fileID: 1965011593}
   - component: {fileID: 1965011592}
   - component: {fileID: 1965011591}
-  - component: {fileID: 1965011589}
   - component: {fileID: 1965011588}
   m_Layer: 0
   m_Name: Shop
@@ -32114,27 +32113,6 @@ MonoBehaviour:
     prefab: {fileID: 2242720189373444907, guid: a58ee7a436b0e3e42be9a7cb29358ffb,
       type: 3}
     cost: 1000
---- !u!114 &1965011589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1965011586}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c623baae014ee44c925c3c6bd0491ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tower1: {prefab: {fileID: 41377372645925576, guid: e53f3e7e4b1566a4cac9283b819991ee,
-      type: 3}, cost: 100}
-  tower2: {prefab: {fileID: 5984063916236858040, guid: b5e473242c5495f4687b0a9eaeaffacb,
-      type: 3}, cost: 200}
-  tower3: {prefab: {fileID: 3314341932098436544, guid: 7902fd0292dd37244bb0fc5812820759,
-      type: 3}, cost: 300}
-  tower4: {prefab: {fileID: 2884818406671465488, guid: 06a22bbf82cb6114a89727add6bde3ce,
-      type: 3}, cost: 400}
-  buildManager: {fileID: 0}
 --- !u!114 &1965011591
 MonoBehaviour:
   m_ObjectHideFlags: 0
