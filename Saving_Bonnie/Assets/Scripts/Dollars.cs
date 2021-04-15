@@ -14,5 +14,6 @@ public class Dollars : MonoBehaviour
  	money = startMoney;
         lives = startLives;
     }
+  // test
 
 }
