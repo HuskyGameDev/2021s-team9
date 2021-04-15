@@ -36,7 +36,7 @@ public class WaveSpawn : MonoBehaviour
         GameObject[] zombies = GameObject.FindGameObjectsWithTag("zombie");
 
         // Game Win Condition
-        if (waveCount >= zomCounts.Length) {
+        if (waveCount >= zomCounts.Length && (zombies.Length == 0)) {
             Debug.Log("You win!");
             SceneManager.LoadScene("Win_Screen");
             enabled = false;
@@ -61,6 +61,7 @@ public class WaveSpawn : MonoBehaviour
         }
         // Increment wave count
         waveCount++;
+        yield break;
     }
 
 }

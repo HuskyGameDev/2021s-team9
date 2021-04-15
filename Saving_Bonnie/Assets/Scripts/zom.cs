@@ -78,12 +78,14 @@ public class zom : MonoBehaviour
             if(Dollars.lives <= 0) {
                 SceneManager.LoadScene("GameOver_Screen");
             }
+            enabled = false;
         }
 
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
             Dollars.money += 50;
+            enabled = false;
         }
     }
 
@@ -98,10 +100,10 @@ public class zom : MonoBehaviour
         currentSpeed = baseSpeed * slowdownAmount; //Reduces the zombies speed
         anim.speed *= slowdownAmount;
         yield return new WaitForSecondsRealtime(slowdownTime); //Causes the system to wait 2 seconds before going to the next line
-        //if (target != null) { //Checks if the target died during the wait
+        if (this != null) {
             currentSpeed = baseSpeed; //Resets the zombies speed
             anim.speed /= slowdownAmount;
-        //}
+        }
     }
     
 }
