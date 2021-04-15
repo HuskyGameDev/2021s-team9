@@ -196,7 +196,8 @@ MonoBehaviour:
     improves the effectiveness of towers around it\n\t\t- Electrical Engineer: slows
     the speed of the zombies with electricity\n\t\t- Business Major: generates money
     or \"dining dollars\" passively\n\t\t- Mechanical Engineer: shoots a crossbow
-    at the zombies\n- You gain more dining dollars by killing zombies\n"
+    at the zombies\n- You gain more dining dollars by killing zombies\n- Win by beating
+    all of the waves of enemies"
 --- !u!222 &243855493
 CanvasRenderer:
   m_ObjectHideFlags: 0
