@@ -24,6 +24,8 @@ public class WaveSpawn : MonoBehaviour
 
     private double[] waveTimes = {1f, 10f, 20f, 30f, 30f};
 
+    private int[] healthCounts = {50, 100, 200, 500, 1000};
+
     public int waveCount = 0;
 
     private double timer = 2f;
@@ -55,8 +57,10 @@ public class WaveSpawn : MonoBehaviour
 
     // Handles the new wave spawns and creates enemies
     IEnumerator NewWave(int roundNum) {
+        Transform newZom;
         for (int i = 0; i < zomCounts[roundNum]; i++) {
-            Instantiate(zombieEnemy, spawn.position, spawn.rotation);
+            newZom = Instantiate(zombieEnemy, spawn.position, spawn.rotation);
+            newZom.GetComponent<zom>().maxHealth = healthCounts[roundNum];
             yield return new WaitForSeconds((float) (waveTimes[roundNum] / zomCounts[roundNum]));
         }
         // Increment wave count

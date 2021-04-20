@@ -14,18 +14,14 @@ using UnityEngine.SceneManagement;
 public class zom : MonoBehaviour
 {
     // Variables for health system
-    public int maxHealth;
+    public int maxHealth = 100;
     public int currentHealth;
     public HealthBar healthBar;
-    
-    private int wave = 0;
 
     // Variables for the zombie behavior and animations, including the waypoint array
     public GameObject spawner;
 
     private Transform[] points;
-
-    private int[] healthCounts = {50, 100, 200, 500, 1000};
 
     public Animator anim;
 
@@ -50,10 +46,6 @@ public class zom : MonoBehaviour
         }
 
         gameObject.layer = 1;
-        
-        wave = spawner.GetComponent<WaveSpawn>().waveCount;
-
-        maxHealth = healthCounts[wave];
 
         currentHealth = maxHealth;
         healthBar.setMaxHealth(maxHealth);
