@@ -24,7 +24,7 @@ public class WaveSpawn : MonoBehaviour
 
     private double[] waveTimes = {1f, 10f, 20f, 30f, 30f};
 
-    private int[] healthCounts = {50, 100, 200, 500, 1000};
+    private int[] healthCounts = {50, 100, 150, 250, 400};
 
     public int waveCount = 0;
 

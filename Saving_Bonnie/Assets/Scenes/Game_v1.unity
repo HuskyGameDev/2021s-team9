@@ -627,7 +627,7 @@ PrefabInstance:
     - target: {fileID: 2884818404781110749, guid: 06a22bbf82cb6114a89727add6bde3ce,
         type: 3}
       propertyPath: m_Text
-      value: 1000
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 2884818404781110749, guid: 06a22bbf82cb6114a89727add6bde3ce,
         type: 3}
@@ -31134,8 +31134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e59c10874edc94f9cd75018958d7b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startMoney: 1000
-  startLives: 15
+  startMoney: 300
+  startLives: 3
 --- !u!1001 &1701708508
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32075,7 +32075,7 @@ MonoBehaviour:
   tower4:
     prefab: {fileID: 2242720189373444907, guid: a58ee7a436b0e3e42be9a7cb29358ffb,
       type: 3}
-    cost: 1000
+    cost: 200
 --- !u!114 &1965011591
 MonoBehaviour:
   m_ObjectHideFlags: 0
