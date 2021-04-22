@@ -104,7 +104,7 @@ MonoBehaviour:
   slowdownTime: 0
   slowdownAmount: 0
   passiveTimer: 5
-  income: 10
+  income: 30
 --- !u!95 &1272170799760805745
 Animator:
   serializedVersion: 3
